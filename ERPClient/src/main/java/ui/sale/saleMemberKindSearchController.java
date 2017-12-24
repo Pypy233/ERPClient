@@ -1,10 +1,16 @@
 package ui.sale;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import ui.Main;
+import vo.UserVO;
 
 public class saleMemberKindSearchController {
 
+
+    private Main main;
+    private UserVO userVO;
     //客户管理 按钮
     @FXML
     public Button memberButton;
@@ -89,8 +95,9 @@ public class saleMemberKindSearchController {
 
 
 
-
-
+    //UserInfo 用户名
+    @FXML
+    public Label userNameLB;
 
 
 
@@ -100,4 +107,47 @@ public class saleMemberKindSearchController {
     //右下角 返回上一层 按钮
     @FXML
     public Button backButton;
+
+
+    //跳转客户管理界面
+    //返回上一层
+    @FXML
+    public void gotoMember(ActionEvent e){
+        main.gotoSaleMember(userVO);
+    }
+    //跳转进货界面
+    @FXML
+    public void gotoStockIn(ActionEvent e){
+        main.gotoSaleStock(userVO);
+    }
+
+    //跳转销售界面
+    @FXML
+    public void gotoSale(ActionEvent e){
+        main.gotoSaleSale(userVO);
+    }
+    //跳转退货界面
+    @FXML
+    public void gotoReturn(ActionEvent e){
+        main.gotoSaleReturn(userVO);
+    }
+
+    //查询 action
+    @FXML
+    public void memberKindSearch(ActionEvent e){
+
+    }
+
+
+    //登出
+    @FXML
+    public void gotoLog(ActionEvent e){
+        userVO.setLogin(false);
+        main.gotoLog(userVO.getType());
+    }
+    public void setMain(Main main,UserVO userVO){
+        this.main=main;
+        this.userVO=userVO;
+        userNameLB.setText("管理员"+userVO.getName());
+    }
 }

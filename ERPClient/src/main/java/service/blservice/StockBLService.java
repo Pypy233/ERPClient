@@ -4,6 +4,7 @@ import objects.ResultMessage;
 import vo.GoodsStockVO;
 import vo.StockVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
 /**
  * Created by py on 2017/10/20.
  */
-public interface StockBLService {
+public interface StockBLService extends Remote {
 
    /**
     * 增加库存单

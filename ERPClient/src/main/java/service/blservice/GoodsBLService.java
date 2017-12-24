@@ -7,10 +7,11 @@ package service.blservice;
 import objects.ResultMessage;
 import vo.GoodsVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface GoodsBLService {
+public interface GoodsBLService extends Remote {
     /**
      *增加商品
      * @param vo

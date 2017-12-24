@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.commodity.commodityClassifyKindController">
+   <children>
+      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: blue;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="5.0" layoutY="108.0" />
+            <Label layoutX="80.0" layoutY="800.0" text="by xyf" />
+            <Button fx:id="stockButton" layoutX="80.0" layoutY="450.0" mnemonicParsing="false" onAction="#gotoStock" prefHeight="40.0" prefWidth="100.0" text="库存">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="goodsButton" layoutX="80.0" layoutY="350.0" mnemonicParsing="false" onAction="#gotoGoods" prefHeight="40.0" prefWidth="100.0" text="商品管理">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font></Button>
+            <Button fx:id="classifyButton" layoutX="80.0" layoutY="250.0" mnemonicParsing="false" onAction="#gotoClassify" prefHeight="40.0" prefWidth="100.0" text="商品分类">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/list.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/apps.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/category.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="85.0" layoutY="725.0" text="NJU" />
+            <Label layoutX="78.0" layoutY="750.0" text="软工二" />
+            <Label layoutX="40.0" layoutY="775.0" text="\@怎么都搞得好组" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="250.0" layoutY="175.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: blue;">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" text="商品分类">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="812.0" layoutY="631.0" mnemonicParsing="false" onAction="#gotoClassify" text="返回上一层" />
+            <AnchorPane layoutX="20.0" layoutY="100.0" prefHeight="500.0" prefWidth="910.0" style="-fx-border-color: blue;">
+               <children>
+                  <Label ellipsisString="" layoutX="15.0" layoutY="15.0" prefHeight="20.0" prefWidth="66.0" text="商品类别列表">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Label>
+                  <TableView fx:id="kindTV" layoutX="70.0" layoutY="60.0" prefHeight="323.0" prefWidth="500.0">
+                    <columns>
+                      <TableColumn fx:id="kindIDTC" prefWidth="135.0" text="类别ID" />
+                      <TableColumn fx:id="kindKindTC" minWidth="0.0" prefWidth="154.0" text="类别名" />
+                        <TableColumn fx:id="kindDescriptionTC" prefWidth="187.0" text="描述" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="635.0" layoutY="105.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="50.0" text="编辑" />
+                  <Button layoutX="754.0" layoutY="105.0" mnemonicParsing="false" text="删除" />
+                  <Button fx:id="addKindButton" layoutX="611.0" layoutY="428.0" mnemonicParsing="false" onAction="#addNewKind" text="添加分类" />
+                  <TextField fx:id="kindIDTF" layoutX="70.0" layoutY="419.0" prefHeight="30.0" prefWidth="121.0" text="00001" />
+                  <TextField fx:id="kindNameTF" layoutX="230.0" layoutY="418.0" prefHeight="30.0" prefWidth="121.0" text="pg" />
+                  <TextField fx:id="kindDescriptionTF" layoutX="417.0" layoutY="418.0" prefHeight="30.0" prefWidth="121.0" text="鹏哥专用" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="80.0" layoutY="59.0" text="类别操作">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <Label layoutX="250.0" layoutY="75.0" prefHeight="60.0" prefWidth="280.0" text="库存管理人员">
+         <font>
+            <Font name="System Bold" size="45.0" />
+         </font></Label>
+      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="900.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/commodity.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="userNameLB" layoutX="1000.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="管理员鹏哥">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="550.0" layoutY="95.0" prefHeight="40.0" prefWidth="250.0" text="Commodity Management">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="logoutButton" layoutX="1010.0" layoutY="110.0" mnemonicParsing="false" onAction="#gotoLog" prefHeight="30.0" prefWidth="80.0" text="登出" />
+   </children>
+</AnchorPane>

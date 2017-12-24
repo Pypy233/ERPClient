@@ -4,6 +4,7 @@ import objects.ResultMessage;
 import vo.GoodsSaleVO;
 import vo.SaleVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
  * Created by py on 2017/10/20.
  *
  */
-public interface SaleBLService {
+public interface SaleBLService extends Remote {
     /**
      * 增加销售单
      * @param retailer

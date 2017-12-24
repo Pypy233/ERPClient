@@ -4,11 +4,12 @@ import objects.ResultMessage;
 import vo.GoodsStockReturnVO;
 import vo.StockReturnVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
 
-public interface StockReturnBLService {
+public interface StockReturnBLService extends Remote {
     /**
      * 增加库存退货单
      * @param provider

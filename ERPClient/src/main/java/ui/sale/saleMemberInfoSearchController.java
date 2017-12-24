@@ -1,9 +1,15 @@
 package ui.sale;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import ui.Main;
+import vo.UserVO;
 
 public class saleMemberInfoSearchController {
+
+    private Main main;
+    private UserVO userVO;
     //客户管理 按钮
     @FXML
     public Button memberButton;
@@ -95,8 +101,9 @@ public class saleMemberInfoSearchController {
 
 
 
-
-
+    //UserInfo 用户名
+    @FXML
+    public Label userNameLB;
 
 
     //右上角 登出 按钮
@@ -105,4 +112,58 @@ public class saleMemberInfoSearchController {
     //右下角 返回上一层 按钮
     @FXML
     public Button backButton;
+
+
+
+
+
+    //跳转客户管理界面
+    //返回上一层
+    @FXML
+    public void gotoMember(ActionEvent e){
+        main.gotoSaleMember(userVO);
+    }
+    //跳转进货界面
+    @FXML
+    public void gotoStockIn(ActionEvent e){
+        main.gotoSaleStock(userVO);
+    }
+
+    //跳转销售界面
+    @FXML
+    public void gotoSale(ActionEvent e){
+        main.gotoSaleSale(userVO);
+    }
+    //跳转退货界面
+    @FXML
+    public void gotoReturn(ActionEvent e){
+        main.gotoSaleReturn(userVO);
+    }
+
+    //查询 action
+    @FXML
+    public void memberInfoSearch(ActionEvent e){
+        String name=memberNameTA.getText();
+        String id=memberIDTA.getText();
+        String address=memberAddressTA.getText();
+        String postcode=memberPostcodeTA.getText();
+        String recevableLimit=memberReceivableLimitTA.getText();
+        String defaultSalesman=memberDefaultSalesmanTA.getText();
+
+
+
+    }
+
+
+    //登出
+    @FXML
+    public void gotoLog(ActionEvent e){
+        userVO.setLogin(false);
+        main.gotoLog(userVO.getType());
+    }
+    public void setMain(Main main,UserVO userVO){
+        this.main=main;
+        this.userVO=userVO;
+        userNameLB.setText("管理员"+userVO.getName());
+    }
 }

@@ -1,10 +1,14 @@
 package ui.commodity;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import ui.Main;
+import vo.UserVO;
 
 public class commodityStockCheckController {
-
+    private Main main;
+    private UserVO userVO;
     //左侧“商品分类”按钮
     @FXML
     public Button classifyButton;
@@ -51,7 +55,7 @@ public class commodityStockCheckController {
 
     //库存变动列表 单据编号
     @FXML
-    public TableColumn stockRecepitIDTC;
+    public TableColumn stockReceiptIDTC;
     //库存变动列表 供应商
     @FXML
     public TableColumn stockSupplierTC;
@@ -60,7 +64,7 @@ public class commodityStockCheckController {
     public TableColumn stockWarehouseTC;
     //库存变动列表 操作员
     @FXML
-    public TableColumn stockOperaterTC;
+    public TableColumn stockOperatorTC;
     //库存变动列表 入库商品
     @FXML
     public TableColumn stockGoodsTC;
@@ -74,7 +78,9 @@ public class commodityStockCheckController {
 
 
 
-
+    //UserInfo 用户名
+    @FXML
+    public Label userNameLB;
 
 
 
@@ -86,4 +92,48 @@ public class commodityStockCheckController {
     //右下角“返回上一层”按钮
     @FXML
     public Button backButton;
+
+
+
+    //跳转商品分类界面
+    @FXML
+    public void gotoClassify(ActionEvent e){
+        main.gotoCommodityClassify(userVO);
+    }
+    //跳转商品管理界面
+    @FXML
+    public void gotoGoods(ActionEvent e){
+        main.gotoCommodityGoods(userVO);
+    }
+
+    //跳转库存界面
+    //返回上一层
+    @FXML
+    public void gotoStock(ActionEvent e){
+        main.gotoCommodityStock(userVO);
+    }
+
+
+    //点击按钮查询
+    @FXML
+    public void gotoStockSearch(ActionEvent e){
+
+    }
+
+
+
+
+    //登出
+    @FXML
+    public void gotoLog(ActionEvent e){
+        userVO.setLogin(false);
+        main.gotoLog(userVO.getType());
+    }
+
+
+    public void setMain(Main main,UserVO userVO){
+        this.main=main;
+        this.userVO=userVO;
+        userNameLB.setText("管理员"+userVO.getName());
+    }
 }

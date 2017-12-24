@@ -4,11 +4,12 @@ import objects.ResultMessage;
 import vo.GoodsSaleReturnVO;
 import vo.SaleReturnVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
 
-public interface SaleReturnBLService {
+public interface SaleReturnBLService extends Remote {
 
     /**
      * 增加销售退货单

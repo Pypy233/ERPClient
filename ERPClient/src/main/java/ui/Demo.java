@@ -14,9 +14,9 @@ public class Demo extends Application{
     @Override
     public void start(Stage stage) throws IOException {
         System.out.println(getClass().getResource(
-                "/fxml/initialize.fxml"));
-        root = FXMLLoader.load(getClass().getResource("/fxml/initialize.fxml"));
-        Scene scene = new Scene(root, 800, 600);
+                "/fxml/Initialization.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/fxml/Initialization.fxml"));
+        Scene scene = new Scene(root, 1250, 900);
         stage.setTitle("Login system");
         stage.setScene(scene);
         stage.show();

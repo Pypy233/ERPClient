@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.sale.saleMemberIDSearchController">
+   <children>
+      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: blue;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="5.0" layoutY="108.0" />
+            <Label layoutX="80.0" layoutY="800.0" text="by xyf" />
+            <Button fx:id="saleButton" layoutX="80.0" layoutY="450.0" mnemonicParsing="false" onAction="#gotoSale" prefHeight="40.0" prefWidth="100.0" text="销售">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="stockInButton" layoutX="80.0" layoutY="350.0" mnemonicParsing="false" onAction="#gotoStockIn" prefHeight="40.0" prefWidth="100.0" text="进货">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="memberButton" layoutX="80.0" layoutY="250.0" mnemonicParsing="false" onAction="#gotoMember" prefHeight="40.0" prefWidth="100.0" text="管理客户">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/list.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/enter.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="20.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/drafts.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="85.0" layoutY="725.0" text="NJU" />
+            <Label layoutX="78.0" layoutY="750.0" text="软工二" />
+            <Label layoutX="40.0" layoutY="775.0" text="\@怎么都搞得好组" />
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/exit.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="returnButton" layoutX="80.0" layoutY="550.0" mnemonicParsing="false" onAction="#gotoReturn" prefHeight="40.0" prefWidth="100.0" text="退货">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="250.0" layoutY="175.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: blue;">
+         <children>
+            <Label layoutX="15.0" layoutY="15.0" text="客户管理系统">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="841.0" layoutY="646.0" mnemonicParsing="false" onAction="#gotoMember" text="返回上一层" />
+            <AnchorPane layoutX="20.0" layoutY="104.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="910.0" style="-fx-border-color: blue;">
+               <children>
+                  <AnchorPane layoutX="50.0" layoutY="75.0" prefHeight="120.0" prefWidth="810.0" style="-fx-border-color: blue;">
+                     <children>
+                        <TextField fx:id="memberIDSearchTF" layoutX="235.0" layoutY="50.0" opacity="0.57" prefHeight="30.0" prefWidth="217.0" text="如#00001" />
+                        <Label layoutX="60.0" layoutY="50.0" text="请输入查询ID">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="memberIDSearchButton" layoutX="600.0" layoutY="50.0" mnemonicParsing="false" onAction="#memberIDSearch" text="查询">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <Label alignment="CENTER" layoutX="20.0" layoutY="14.0" text="ID查询">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="50.0" layoutY="250.0" prefHeight="209.0" prefWidth="810.0" style="-fx-border-color: blue;">
+                     <children>
+                        <Label ellipsisString="" layoutX="15.0" layoutY="15.0" text="查询结果">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="725.0" layoutY="81.0" mnemonicParsing="false" text="选择" />
+                        <TableView fx:id="memberInfoSearchTV" layoutX="51.0" layoutY="45.0" prefHeight="120.0" prefWidth="634.0">
+                           <columns>
+                              <TableColumn fx:id="memberIDTC" prefWidth="165.0" text="ID" />
+                              <TableColumn fx:id="memberNameTC" prefWidth="84.0" text="客户姓名" />
+                              <TableColumn fx:id="memberKindTC" prefWidth="87.0" text="类别" />
+                              <TableColumn fx:id="memberLevelTC" prefWidth="66.0" text="级别" />
+                              <TableColumn fx:id="memberDefaultSalesmanPriceTC" prefWidth="174.0" text="业务员" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Label layoutX="115.0" layoutY="53.0" text="客户查询">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <Label layoutX="250.0" layoutY="75.0" prefHeight="60.0" prefWidth="280.0" text="进货销售人员">
+         <font>
+            <Font name="System Bold" size="45.0" />
+         </font></Label>
+      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="900.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/salesman.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="userNameLB" layoutX="1000.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="管理员鹏哥">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="550.0" layoutY="95.0" prefHeight="40.0" prefWidth="109.0" text="Stock&amp;Sale">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="logoutButton" layoutX="1010.0" layoutY="110.0" mnemonicParsing="false" onAction="#gotoLog" prefHeight="30.0" prefWidth="80.0" text="登出" />
+   </children>
+</AnchorPane>

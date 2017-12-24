@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:controller="ui.login.RegisterController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="425.0" layoutY="450.0" prefHeight="350.0" prefWidth="400.0" style="-fx-border-color: blue;">
+         <children>
+            <Label layoutX="50.0" layoutY="100.0" text="用户名：">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="adminNameTF" layoutX="150.0" layoutY="100.0" />
+            <Label  layoutX="50.0" layoutY="40.0" text="账户类型：">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="adminCodeTF" layoutX="150.0" layoutY="160.0" />
+            <Label fx:id="userKindLB" id="userKindLB" layoutX="200.0" layoutY="40.0" text="XXXX人员" />
+            <Label layoutX="50.0" layoutY="160.0" text="密码：">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="registerButton" layoutX="175.0" layoutY="290.0" mnemonicParsing="false" text="注册" onAction="#register"/>
+            <Label layoutX="50.0" layoutY="220.0" text="确认密码：">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="adminCodeAgainTF" layoutX="150.0" layoutY="220.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="338.0" fitWidth="255.0" layoutX="500.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/memberPic.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="570.0" layoutY="400.0" text="REGISTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="1090.0" layoutY="835.0" mnemonicParsing="false" text="返回上一层" onAction="#gotoLog" />
+   </children>
+</AnchorPane>

@@ -1,6 +1,7 @@
 package runner;
 
 import rmi.RemoteHelper;
+import ui.Main;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -12,7 +13,9 @@ public class ClientRunner {
 
     public ClientRunner() {
         linkToServer();
+        ;
     }
+
 
     private void linkToServer() {
         try {
@@ -33,6 +36,6 @@ public class ClientRunner {
 
     public static void main(String[] args){
         ClientRunner cr = new ClientRunner();
-
+       Main.main(args);
     }
 }

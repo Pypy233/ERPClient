@@ -3,13 +3,16 @@ package service.blservice;
 import objects.ResultMessage;
 import vo.UserVO;
 
-public interface UserBLService {
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface UserBLService extends Remote{
     /**
      * 登录
      * @param vo
      * @return
      */
-    public ResultMessage register(UserVO vo);
+    public ResultMessage register(UserVO vo) throws RemoteException;
 
     /**
      * 检查用户名密码
@@ -17,7 +20,7 @@ public interface UserBLService {
      * @param password
      * @return
      */
-    public ResultMessage check(String name, String password);
+    public ResultMessage check(String name, String password) throws RemoteException;
 
     /**
      * 修改密码
@@ -26,12 +29,12 @@ public interface UserBLService {
      * @param type
      * @return
      */
-    public ResultMessage updatePassword(String name, String password, String type);
+    public ResultMessage updatePassword(String name, String password, String type) throws RemoteException;
 
     /**
      * 得到用户信息
      * @param name
      * @return
      */
-    public UserVO getUserVO(String name);
+    public UserVO getUserVO(String name) throws RemoteException;
 }

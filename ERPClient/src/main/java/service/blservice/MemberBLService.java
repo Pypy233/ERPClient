@@ -3,13 +3,14 @@ package service.blservice;
 import objects.ResultMessage;
 import vo.MemberVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
  * Created by py on 2017/10/20.
  * 管理员工信息的类
  */
-public interface MemberBLService {
+public interface MemberBLService extends Remote {
     /**
      * 增加员工信息
      * @param vo
@@ -36,7 +37,7 @@ public interface MemberBLService {
      * @param number
      * @return
      */
-    public MemberVO findMember(int number);
+    public MemberVO findMember(int number)throws RemoteException;
 
 
 }

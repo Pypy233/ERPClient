@@ -4,9 +4,10 @@ import objects.ResultMessage;
 import vo.GoodsSaleVO;
 import vo.GoodsVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface GoodsSaleBLService {
+public interface GoodsSaleBLService extends Remote {
     /**
      *增加销售商品，允许修改销售价格
      * @param vo

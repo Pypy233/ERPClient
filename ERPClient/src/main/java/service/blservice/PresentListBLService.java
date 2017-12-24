@@ -3,29 +3,31 @@ package service.blservice;
 import objects.ResultMessage;
 import vo.PresentListVO;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface PresentListBLService {
+public interface PresentListBLService extends Remote {
     /**
      *
      * @param vo
      * @return
      */
-    public ResultMessage addPresentList(PresentListVO vo);
+    public ResultMessage addPresentList(PresentListVO vo)throws RemoteException;
 
     /**
      *
      * @param vo
      * @return
      */
-    public ResultMessage deletePresentList(PresentListVO vo);
+    public ResultMessage deletePresentList(PresentListVO vo)throws RemoteException;
 
     /**
      *
      * @param vo
      * @return
      */
-    public ResultMessage update(PresentListVO vo);
+    public ResultMessage update(PresentListVO vo)throws RemoteException;
 
 
     /**
@@ -36,12 +38,12 @@ public interface PresentListBLService {
      * @param memberName
      * @return
      */
-    public ArrayList<PresentListVO> getOverflowList(String startTime, String endTime, String userName, String memberName);
+    public ArrayList<PresentListVO> getOverflowList(String startTime, String endTime, String userName, String memberName)throws RemoteException;
 
     /**
      * 生成红冲
      * @param vo
      * @return
      */
-    public PresentListVO addPresentListRed(PresentListVO vo);
+    public PresentListVO addPresentListRed(PresentListVO vo)throws RemoteException;
 }

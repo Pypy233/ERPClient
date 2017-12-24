@@ -4,9 +4,10 @@ import objects.ResultMessage;
 import vo.GoodsStockVO;
 import vo.GoodsVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface GoodsStockBLService {
+public interface GoodsStockBLService extends Remote {
     /**
      * 在不更改定价的情况下增加进货商品，单价（默认为商品信息中的进价）
      * @param vo

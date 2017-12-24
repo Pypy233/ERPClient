@@ -15,9 +15,10 @@ public class LoginOverviewController implements Initializable{
     //总经理登录按钮 跳转至登录页面
     @FXML
     public Button managerLoginButton;
+
     //总经理登录按钮 跳转至登录页面
     @FXML
-    public Button finanzenLoginButton;
+    public Button accountantLoginButton;
     //总经理登录按钮 跳转至登录页面
     @FXML
     public Button stockLoginButton;
@@ -25,25 +26,21 @@ public class LoginOverviewController implements Initializable{
     @FXML
     public Button saleLoginButton;
 
+
     @FXML
-    public void gotoManage(ActionEvent e){
+    public void gotoLog(ActionEvent e){
+
+       if( e.getSource()==managerLoginButton)
+        main.gotoLog("总经理");
+       else if( e.getSource()==accountantLoginButton)
+            main.gotoLog("财务人员");
+       else if( e.getSource()==stockLoginButton)
+            main.gotoLog("库存管理人员");
+       else if( e.getSource()==saleLoginButton)
+            main.gotoLog("进货销售人员");
 
     }
 
-    @FXML
-    public void gotoStock(ActionEvent e){
-
-    }
-
-    @FXML
-    public void gotoFinace(ActionEvent e){
-
-    }
-
-    @FXML
-    public void gotoSale(ActionEvent e){
-
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

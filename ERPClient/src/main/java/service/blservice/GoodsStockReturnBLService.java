@@ -4,9 +4,10 @@ import objects.ResultMessage;
 import vo.GoodsStockReturnVO;
 import vo.GoodsVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface GoodsStockReturnBLService {
+public interface GoodsStockReturnBLService extends Remote {
     /**
      * 增加进货退货商品，默认更改价格
      * @param vo
