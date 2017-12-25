@@ -1,9 +1,10 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SaleReturnVO {
+public class SaleReturnVO implements Serializable{
     /**
      * 单据编号（XSTHD-yyyyMMdd-xxxxx）
      */

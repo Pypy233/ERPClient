@@ -1,9 +1,11 @@
 package vo;
 
+import java.io.Serializable;
+
 /**
  * Created by py on 2017/10/19.
  */
-public class GoodsVO {
+public class GoodsVO implements Serializable{
     /**
      * 商品编号
      */

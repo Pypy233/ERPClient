@@ -1,12 +1,13 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by py on 2017/10/20.
  */
-public class StockVO{
+public class StockVO implements Serializable{
     /**
      * 单据编号
      */

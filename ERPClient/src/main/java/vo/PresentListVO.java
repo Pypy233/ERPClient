@@ -1,8 +1,9 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class PresentListVO {
+public class PresentListVO implements Serializable{
     /**
      * id
      */

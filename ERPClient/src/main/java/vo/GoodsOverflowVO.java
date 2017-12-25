@@ -1,6 +1,8 @@
 package vo;
 
-public class GoodsOverflowVO {
+import java.io.Serializable;
+
+public class GoodsOverflowVO implements Serializable {
     /**
      * id
      */

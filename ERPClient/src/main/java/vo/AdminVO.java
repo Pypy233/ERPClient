@@ -1,6 +1,8 @@
 package vo;
 
-public class AdminVO {
+import java.io.Serializable;
+
+public class AdminVO implements Serializable{
     /**
      * 管理员的id
      */

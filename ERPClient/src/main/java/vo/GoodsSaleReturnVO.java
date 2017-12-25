@@ -1,6 +1,8 @@
 package vo;
 
-public class GoodsSaleReturnVO {
+import java.io.Serializable;
+
+public class GoodsSaleReturnVO implements Serializable {
     /**
      * id
      */

@@ -81,7 +81,7 @@ private Main main;
         else if (helper.getUserBLService().check(name, code) == ResultMessage.Success)
         {
             UserVO userVO = helper.getUserBLService().getUserVO(name);
-            if(userVO.getType()!=type){
+            if(userVO.getType().equals(type) == false){
                 AlertUtil.showWarningAlert("该账户权限职能不包括此项，请重新选择人员类别登录此账户");
             }
             else {

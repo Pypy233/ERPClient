@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import objects.ResultMessage;
 import rmi.RemoteHelper;
 import ui.Main;
 import ui.util.AlertUtil;
@@ -52,21 +53,23 @@ public class RegisterController implements Initializable {
         String name=adminNameTF.getText();
         String code=adminCodeTF.getText();
         String codeAgain=adminCodeAgainTF.getText();
+        System.out.println(name);
+        System.out.println(code );
+        UserVO userVO=new UserVO();
+        userVO.setName(name);
+        userVO.setPassword(code);
+        userVO.setType(type);
+        userVO.setLogin(false);
         if(name==""||code==""||codeAgain==""){
             AlertUtil.showWarningAlert("注册信息请填写完整");
         }
         else if(!code.equals(codeAgain)){
             AlertUtil.showErrorAlert("对不起，您两次输入的密码不一致。");
         }
-        else if(helper.getUserBLService().getUserVO(name)!=null){
+        else if(helper.getUserBLService().register(userVO) == ResultMessage.Fail){
             AlertUtil.showErrorAlert("此用户已被注册");
         }
-        else if(helper.getUserBLService().getUserVO(name)==null){
-            UserVO userVO=new UserVO();
-            userVO.setName(name);
-            userVO.setPassword(code);
-            userVO.setType(type);
-            userVO.setLogin(false);
+        else{
             helper.getUserBLService().register(userVO);
             AlertUtil.showInformationAlert("注册成功，请登录");
             main.gotoLog(type);

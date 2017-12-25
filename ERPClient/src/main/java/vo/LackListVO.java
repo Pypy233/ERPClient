@@ -1,9 +1,10 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LackListVO{
+public class LackListVO implements Serializable{
     /**
      * id
      */

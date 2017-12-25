@@ -1,8 +1,9 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class OverflowListVO {
+public class OverflowListVO implements Serializable{
     /**
      * id
      */

@@ -1,9 +1,11 @@
 package vo;
 
+import java.io.Serializable;
+
 /**
  * Created by py on 2017/10/20.
  */
-public class MemberVO {
+public class MemberVO implements Serializable{
     /**
      * 编号
      */
