@@ -11,7 +11,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface GoodsBLService extends Remote {
+public interface GoodsBLService extends Remote{
     /**
      *增加商品
      * @param vo
@@ -47,7 +47,6 @@ public interface GoodsBLService extends Remote {
      * @return
      */
     public ArrayList<GoodsVO> getCurrentGoods() throws RemoteException;
-
 
 
 }
