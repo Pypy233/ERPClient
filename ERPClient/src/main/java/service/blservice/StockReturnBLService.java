@@ -76,4 +76,12 @@ public interface StockReturnBLService extends Remote {
      */
     public ArrayList<StockReturnVO> getStockReturnFail() throws RemoteException;
 
+
+    /**
+     * 生成红冲
+     * @return
+     * @throws RemoteException
+     */
+    public StockReturnVO addStockReturnRed(StockReturnVO vo) throws RemoteException;
+
 }

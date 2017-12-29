@@ -9,7 +9,7 @@ import vo.GoodsLackVO;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface GoodsLackBLService extends Remote {
+public interface GoodsLackBLService extends Remote{
     /**
      * 赠送报损商品
      * @param vo

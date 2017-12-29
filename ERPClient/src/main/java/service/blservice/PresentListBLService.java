@@ -38,7 +38,7 @@ public interface PresentListBLService extends Remote {
      * @param memberName
      * @return
      */
-    public ArrayList<PresentListVO> getOverflowList(String startTime, String endTime, String userName, String memberName)throws RemoteException;
+    public ArrayList<PresentListVO> getPresentList(String startTime, String endTime, String userName, String memberName)throws RemoteException;
 
     /**
      * 生成红冲

@@ -65,6 +65,19 @@ public interface SaleBLService extends Remote {
     public void failSaleCheck(SaleVO vo) throws  RemoteException;
 
     /**
+     * 查看销售明细
+     * @param startTime
+     * @param endTime
+     * @param goodsName
+     * @param userName
+     * @param memberName
+     * @return
+     * @throws RemoteException
+     */
+    public ArrayList<GoodsSaleVO> checkSale(String startTime, String endTime, String goodsName, String userName,
+                                            String memberName) throws RemoteException;
+
+    /**
      * 生成红冲
      * @param vo
      * @return
@@ -79,13 +92,14 @@ public interface SaleBLService extends Remote {
      * @param memberName
      * @return
      */
-    public ArrayList<SaleVO> getSale(String startTime, String endTime, String userName, String memberName) throws RemoteException;
+    public ArrayList<SaleVO> getSale(String startTime, String endTime, String userName,
+                                     String memberName) throws RemoteException;
 
     /**
      * 得到未通过销售单
      * @return
      */
-    public ArrayList<SaleVO> getSalFail() throws RemoteException;
+    public ArrayList<SaleVO> getSaleFail() throws RemoteException;
 
 
 }

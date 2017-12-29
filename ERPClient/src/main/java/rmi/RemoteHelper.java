@@ -70,4 +70,8 @@ public class RemoteHelper {
     public UserBLService getUserBLService(){
         return (UserBLService)remote;
     }
+
+    public LogBLService getLogBlService(){
+        return (LogBLService)remote;
+    }
 }
