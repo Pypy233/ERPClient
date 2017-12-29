@@ -45,4 +45,11 @@ public interface LackListBLService extends Remote {
      * @return
      */
     public LackListVO addLackListRed(LackListVO vo)throws RemoteException;
+
+    /**
+     * 得到所有报溢单
+     * @return
+     * @throws RemoteException
+     */
+    public ArrayList<LackListVO> getAllLackList() throws RemoteException;
 }

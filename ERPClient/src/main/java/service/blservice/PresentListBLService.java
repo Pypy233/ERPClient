@@ -38,7 +38,8 @@ public interface PresentListBLService extends Remote {
      * @param memberName
      * @return
      */
-    public ArrayList<PresentListVO> getPresentList(String startTime, String endTime, String userName, String memberName)throws RemoteException;
+    public ArrayList<PresentListVO> getPresentList(String startTime, String endTime,
+                                                   String userName, String memberName)throws RemoteException;
 
     /**
      * 生成红冲
@@ -46,4 +47,11 @@ public interface PresentListBLService extends Remote {
      * @return
      */
     public PresentListVO addPresentListRed(PresentListVO vo)throws RemoteException;
+
+    /**
+     * 获取所有礼品单
+     * @return
+     * @throws RemoteException
+     */
+    public ArrayList<PresentListVO> getAllPresentList() throws RemoteException;
 }
