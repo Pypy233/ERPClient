@@ -6,31 +6,34 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="ui.login.LoginController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.login.LoginController">
    <children>
-      <AnchorPane layoutX="425.0" layoutY="450.0" prefHeight="300.0" prefWidth="400.0" style="-fx-border-color: blue;">
+      <AnchorPane layoutX="425.0" layoutY="450.0" prefHeight="300.0" prefWidth="400.0" style="-fx-border-color: black; -fx-border-width: 2;">
          <children>
             <Label layoutX="50.0" layoutY="100.0" text="用户名：">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="adminNameTF" layoutX="150.0" layoutY="100.0"  />
-            <Label  layoutX="50.0" layoutY="40.0" text="账户类型：">
+            <TextField fx:id="adminNameTF" layoutX="150.0" layoutY="100.0" />
+            <Label layoutX="50.0" layoutY="40.0" text="账户类型：">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="adminCodeTF" layoutX="150.0" layoutY="160.0"/>
-            <Label fx:id="userKindLB" id="userKindLB" layoutX="200.0" layoutY="40.0" text="XXXX人员" />
+            <PasswordField fx:id="adminCodeTF" layoutX="150.0" layoutY="160.0" />
+            <Label id="userKindLB" fx:id="userKindLB" layoutX="200.0" layoutY="40.0" text="XXXX人员">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font></Label>
             <Label layoutX="50.0" layoutY="160.0" text="密码：">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="loginButton" layoutX="185.0" layoutY="225.0" mnemonicParsing="false" text="登录" onAction="#gotoLogin"/>
-            <Button fx:id="toRegisterButton" layoutX="285.0" layoutY="225.0" mnemonicParsing="false" text="注册" onAction="#gotoRegister" />
-            <Button fx:id="codeModifyButton" layoutX="55.0" layoutY="225.0" mnemonicParsing="false" text="修改密码" onAction="#gotoCodeModify" />
+            <Button fx:id="loginButton" layoutX="185.0" layoutY="225.0" mnemonicParsing="false" onAction="#gotoLogin" text="登录" />
+            <Button fx:id="toRegisterButton" layoutX="285.0" layoutY="225.0" mnemonicParsing="false" onAction="#gotoRegister" text="注册" />
+            <Button fx:id="codeModifyButton" layoutX="55.0" layoutY="225.0" mnemonicParsing="false" onAction="#gotoCodeModify" text="修改密码" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="338.0" fitWidth="255.0" layoutX="500.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
@@ -43,6 +46,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="backButton" layoutX="1090.0" layoutY="835.0" mnemonicParsing="false" text="返回上一层" onAction="#gotoBackOverview" />
+      <Button fx:id="backButton" layoutX="1090.0" layoutY="835.0" mnemonicParsing="false" onAction="#gotoBackOverview" text="返回上一层" />
+      <Button fx:id="exitButton" layoutX="1185.0" mnemonicParsing="false" onAction="#exit" prefHeight="34.0" prefWidth="65.0" text="close" />
    </children>
 </AnchorPane>

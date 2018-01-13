@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="ui.login.LoginOverviewController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.login.LoginOverviewController">
    <children>
       <ImageView id="iconOne" fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -50,55 +50,65 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextArea editable="false" layoutX="75.0" layoutY="475.0" prefHeight="225.0" prefWidth="200.0" text="总经理职能：&#10;&#10;审批单据&#10;查看销售明细表&#10;查看经营历程表&#10;查看经营情况表&#10;制定促销策略&#10;&#10;&#10;            ">
+      <TextArea editable="false" layoutX="75.0" layoutY="475.0" prefHeight="250.0" prefWidth="200.0" text="总经理职能：&#10;&#10;审批单据&#10;查看销售明细表&#10;查看经营历程表&#10;查看经营情况表&#10;制定促销策略&#10;">
          <font>
             <Font size="18.0" />
          </font>
       </TextArea>
-      <TextArea editable="false" layoutX="375.0" layoutY="475.0" prefHeight="225.0" prefWidth="200.0" text="财务人员职能：&#10;            &#10;账户管理&#10;制定收款单&#10;指定付款单&#10;查看销售明细表&#10;查看经营历程表&#10;查看经营情况表&#10;期初建账">
+      <TextArea editable="false" layoutX="375.0" layoutY="475.0" prefHeight="250.0" prefWidth="200.0" text="财务人员职能：&#10;            &#10;账户管理&#10;制定收款单、付款单&#10;查看销售明细表&#10;查看经营历程表&#10;查看经营情况表&#10;期初建账">
          <font>
             <Font size="18.0" />
          </font>
       </TextArea>
-      <TextArea editable="false" layoutX="675.0" layoutY="475.0" prefHeight="225.0" prefWidth="200.0" text="库存管理人员职能：&#10;&#10;盘点库存&#10;商品分类管理&#10;商品管理&#10;            ">
+      <TextArea editable="false" layoutX="675.0" layoutY="475.0" prefHeight="250.0" prefWidth="200.0" text="库存管理人员职能：&#10;&#10;盘点库存&#10;商品分类管理&#10;商品管理&#10;            ">
          <font>
             <Font size="18.0" />
          </font>
       </TextArea>
-      <TextArea editable="false" layoutX="975.0" layoutY="475.0" prefHeight="225.0" prefWidth="200.0" text="进货销售人员职能：&#10;&#10;客户管理&#10;制定进货单&#10;制定退货&#10;制定销售            ">
+      <TextArea editable="false" layoutX="975.0" layoutY="475.0" prefHeight="250.0" prefWidth="200.0" text="进货销售人员职能：&#10;&#10;客户管理&#10;制定进货单&#10;制定退货&#10;制定销售            ">
          <font>
             <Font size="18.0" />
          </font>
       </TextArea>
-      <Button fx:id="managerLoginButton" layoutX="140.0" layoutY="750.0" mnemonicParsing="false" text="登录"  onAction="#gotoLog">
+      <Button fx:id="managerLoginButton" layoutX="140.0" layoutY="750.0" mnemonicParsing="false" onAction="#gotoLog" text="登录">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="accountantLoginButton" layoutX="440.0" layoutY="750.0" mnemonicParsing="false" text="登录"  onAction="#gotoLog">
+      <Button fx:id="accountantLoginButton" layoutX="440.0" layoutY="750.0" mnemonicParsing="false" onAction="#gotoLog" text="登录">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="stockLoginButton" layoutX="740.0" layoutY="750.0" mnemonicParsing="false" text="登录" onAction="#gotoLog">
+      <Button fx:id="stockLoginButton" layoutX="740.0" layoutY="750.0" mnemonicParsing="false" onAction="#gotoLog" text="登录">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="saleLoginButton" layoutX="1040.0" layoutY="750.0" mnemonicParsing="false" text="登录"  onAction="#gotoLog">
+      <Button fx:id="saleLoginButton" layoutX="1040.0" layoutY="750.0" mnemonicParsing="false" onAction="#gotoLog" text="登录">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Label layoutX="775.0" layoutY="850.0" text="NOTE:">
+      <Label layoutX="175.0" layoutY="850.0" text="NOTE:">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="850.0" layoutY="850.0" text="选择用户类型进行登录/注册">
+      <Label layoutX="250.0" layoutY="850.0" text="选择用户类型进行登录/注册">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="exitButton" layoutX="1185.0" mnemonicParsing="false" onAction="#exit" prefHeight="34.0" prefWidth="65.0" text="close" />
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="1075.0" layoutY="850.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/memberPic.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="adminButton" layoutX="1125.0" layoutY="855.0" mnemonicParsing="false" onAction="#adminLog" text="管理员登录入口">
+         <font>
+            <Font size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.FinacialStaff.FinacialStaffMainController">
+    <children>
+        <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2;">
+            <children>
+                <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/home.png" />
+                    </image>
+                </ImageView>
+                <VBox layoutX="5.0" layoutY="108.0" />
+                <Button layoutX="72.0" layoutY="302.0" mnemonicParsing="false" onAction="#gotoMakePayment" prefHeight="30.0" prefWidth="100.0" text="制定付款单">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font></Button>
+                <Button layoutX="72.0" layoutY="240.0" mnemonicParsing="false" onAction="#gotoMakePayee" prefHeight="30.0" prefWidth="100.0" text="制定收款单">
+                    <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                    </font></Button>
+                <Button layoutX="72.0" layoutY="181.0" mnemonicParsing="false" onAction="#gotoManageAccount" prefHeight="30.0" prefWidth="100.0" text="账户管理">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font></Button>
+                <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="20.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/update.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="33.0" layoutX="20.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/write.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="20.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/write.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="85.0" layoutY="725.0" text="NJU" />
+                <Label layoutX="78.0" layoutY="750.0" text="软工二" />
+                <Label layoutX="40.0" layoutY="775.0" text="\@怎么都搞得好组" />
+                <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="20.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/list.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="72.0" layoutY="425.0" mnemonicParsing="false" onAction="#gotoSaleDetail" prefHeight="30.0" prefWidth="100.0" text="销售明细">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <ImageView fitHeight="30.0" fitWidth="33.0" layoutX="20.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/list.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="72.0" layoutY="486.0" mnemonicParsing="false" onAction="#gotoSaleProcess" prefHeight="30.0" prefWidth="100.0" text="经营历程">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <ImageView fitHeight="30.0" fitWidth="33.0" layoutX="20.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/list.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="72.0" layoutY="553.0" mnemonicParsing="false" onAction="#gotoSaleInformation" prefHeight="30.0" prefWidth="100.0" text="经营情况">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <ImageView fitHeight="30.0" fitWidth="33.0" layoutX="20.0" layoutY="617.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/write.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="72.0" layoutY="617.0" mnemonicParsing="false" onAction="#gotoMakeBill" prefHeight="30.0" prefWidth="100.0" text="期初建账">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+            <Button layoutX="72.0" layoutY="364.0" mnemonicParsing="false" onAction="#gotoMakeCash" prefHeight="30.0" prefWidth="100.0" text="制定现金单">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="20.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/write.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="250.0" layoutY="175.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <TextArea editable="false" layoutX="211.0" layoutY="56.0" prefHeight="488.0" prefWidth="529.0" text="财务人员的职能&#10;&#10;&#10;·账户管理&#10;&#10;·制定收款单&#10;&#10;·制定付款单&#10;&#10;·制定现金单&#10;&#10;·查看销售明细、经营历程以及经营情况&#10;&#10;·期初建账">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </TextArea>
+            <Button layoutX="530.0" layoutY="572.0" mnemonicParsing="false" onAction="#checkLog" text="系统日志" />
+            <Button layoutX="437.0" layoutY="572.0" mnemonicParsing="false" onAction="#checkDraft" text="草稿" />
+            <Button layoutX="645.0" layoutY="572.0" mnemonicParsing="false" onAction="#checkSub" text="已提交单据" />
+         </children></AnchorPane>
+        <Label layoutX="250.0" layoutY="75.0" prefHeight="60.0" prefWidth="280.0" text="财务人员">
+            <font>
+                <Font name="System Bold" size="45.0" />
+            </font></Label>
+        <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="850.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/accountant.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="label_name" layoutX="950.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="熊以恒">
+            <font>
+                <Font size="20.0" />
+            </font></Label>
+        <Label layoutX="468.0" layoutY="90.0" prefHeight="40.0" prefWidth="141.0" text="Financial Staff">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button layoutX="950.0" layoutY="105.0" mnemonicParsing="false" onAction="#logOut" prefHeight="30.0" prefWidth="80.0" text="登出" />
+    </children>
+</AnchorPane>

@@ -2,7 +2,11 @@ package rmi;
 
 import service.blservice.*;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 public class RemoteHelper {
     private Remote remote;
@@ -70,8 +74,57 @@ public class RemoteHelper {
     public UserBLService getUserBLService(){
         return (UserBLService)remote;
     }
-
     public LogBLService getLogBlService(){
         return (LogBLService)remote;
     }
+    public AdminBLService getAdminBLService(){
+        return (AdminBLService)remote;
+    }
+    public PresentBLService getPresentBLService(){
+        return (PresentBLService)remote;
+    }
+    public PresentListBLService getPresentListBLService(){
+        return (PresentListBLService)remote;
+    }
+    public GoodsOverflowBLService getGoodsOverflowBLService(){
+        return (GoodsOverflowBLService)remote;
+    }
+    public GoodsLackBLService getGoodsLackBLService(){
+        return (GoodsLackBLService)remote;
+    }
+    public OverflowListBLService getOverflowListBLService(){
+        return (OverflowListBLService)remote;
+    }
+    public LackListBLService getLackListBLService(){
+        return (LackListBLService)remote;
+    }
+    public GoodsWarningMessageBLService getGoodsWarningMessageBLService(){
+        return (GoodsWarningMessageBLService)remote;
+    }
+
+
+    public AccountBLService getAccountBLService() throws MalformedURLException, RemoteException, NotBoundException {
+        return (AccountBLService)Naming.lookup("rmi://127.0.0.1:8887/account");
+    }
+
+    public PromotionBLService getPromotionBLService() throws MalformedURLException, RemoteException, NotBoundException {
+        return (PromotionBLService) Naming.lookup("rmi://127.0.0.1:8887/promotion");
+    }
+
+    public BankBLService getBankBLService() throws MalformedURLException, RemoteException, NotBoundException{
+        return (BankBLService)Naming.lookup("rmi://127.0.0.1:8887/bank");}
+
+    public ManageBLService getManageBLService() throws MalformedURLException, RemoteException, NotBoundException{
+        return (ManageBLService)Naming.lookup("rmi://127.0.0.1:8887/manage");}
+
+    public TradeBLService getTradeBLService() throws MalformedURLException, RemoteException, NotBoundException{
+        return (TradeBLService)Naming.lookup("rmi://127.0.0.1:8887/trade");}
+
+    public CashBLService getCashBLService() throws MalformedURLException, RemoteException, NotBoundException{
+        return (CashBLService)Naming.lookup("rmi://127.0.0.1:8887/cash"); }
+
+
+
+
+
 }

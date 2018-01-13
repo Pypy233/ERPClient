@@ -2,7 +2,7 @@ package vo;
 
 import java.io.Serializable;
 
-public class AdminVO implements Serializable{
+public class AdminVO implements Serializable {
     /**
      * 管理员的id
      */

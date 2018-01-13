@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import objects.ResultMessage;
 import rmi.RemoteHelper;
@@ -20,6 +21,14 @@ public class RegisterController implements Initializable {
 
     private Main main;
     private String type;
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        main.exit();
+    }
     //注册按钮
     @FXML
     public Button registerButton;
@@ -34,10 +43,10 @@ public class RegisterController implements Initializable {
     public TextField adminNameTF;
     //密码输入框
     @FXML
-    public TextField adminCodeTF;
+    public PasswordField adminCodeTF;
     //确认密码输入框
     @FXML
-    public TextField adminCodeAgainTF;
+    public PasswordField adminCodeAgainTF;
 
 
     //返回上一层按钮
@@ -60,18 +69,19 @@ public class RegisterController implements Initializable {
         userVO.setPassword(code);
         userVO.setType(type);
         userVO.setLogin(false);
-        if(name==""||code==""||codeAgain==""){
+        if(name.equals("")||code.equals("")||codeAgain.equals("")){
             AlertUtil.showWarningAlert("注册信息请填写完整");
         }
         else if(!code.equals(codeAgain)){
             AlertUtil.showErrorAlert("对不起，您两次输入的密码不一致。");
         }
-        else if(helper.getUserBLService().register(userVO) == ResultMessage.Fail){
-            AlertUtil.showErrorAlert("此用户已被注册");
-        }
+        //else if(helper.getUserBLService().register(userVO) == ResultMessage.Fail){
+            //AlertUtil.showErrorAlert("此用户已被注册");
+        //}
         else{
             helper.getUserBLService().register(userVO);
             AlertUtil.showInformationAlert("注册成功，请登录");
+            helper.getLogBlService().addLog(userVO,"注册",ResultMessage.Success);
             main.gotoLog(type);
         }
     }

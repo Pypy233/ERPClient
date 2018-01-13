@@ -1,96 +1,39 @@
 package ui.model;
 
 import javafx.beans.property.SimpleStringProperty;
-import vo.GoodsVO;
 
 public class GoodsModel {
-
-    /**
-     * 商品编号
-     */
-    private final SimpleStringProperty number;
-
-    /**
-     * 商品名称
-     */
+    private final SimpleStringProperty type;
     private final SimpleStringProperty name;
+    private final SimpleStringProperty ammount;
+    private final SimpleStringProperty number;
+    private final SimpleStringProperty in_price;
+    private final SimpleStringProperty out_price;
+    private final SimpleStringProperty r_inPrice;
+    private final SimpleStringProperty r_outPrice;
 
-    /**
-     * 商品类型
-     */
-    private  final SimpleStringProperty  type;
-
-    /**
-     * 库存数量
-     */
-    private  final SimpleStringProperty commodityNum;
-
-    /**
-     * 进价
-     */
-    private  final SimpleStringProperty  purchasePrice;
-
-    /**
-     * 零售价
-     */
-    private  final SimpleStringProperty retailPrice;
-
-    /**
-     * 最近进价
-     */
-    private final SimpleStringProperty  recentPurPrice;
-
-    /**
-     * *最近零售价
-     */
-    private final SimpleStringProperty  recentRetPrice;
-
-    public GoodsModel(GoodsVO vo){
-        if(vo == null){
-            number = new SimpleStringProperty();
-            name = new SimpleStringProperty();
-            type = new SimpleStringProperty();
-            commodityNum = new SimpleStringProperty();
-            purchasePrice = new SimpleStringProperty();
-            retailPrice = new SimpleStringProperty();
-            recentPurPrice = new SimpleStringProperty();
-            recentRetPrice = new SimpleStringProperty();
-        }
-        else{
-            number = new SimpleStringProperty(vo.getNumber() + "");
-            name = new SimpleStringProperty(vo.getName());
-            type = new SimpleStringProperty(vo.getType());
-            commodityNum = new SimpleStringProperty(vo.getCommodityNum() + "");
-            purchasePrice = new SimpleStringProperty(vo.getPurchasePrice() + "");
-            retailPrice  = new SimpleStringProperty(vo.getRetailPrice() + "");
-            recentPurPrice = new SimpleStringProperty(vo.getRecentPurPrice() + "");
-            recentRetPrice = new SimpleStringProperty(vo.getRecentRetPrice() + "");
-        }
+    public String getAmmount() {
+        return ammount.get();
     }
 
-
-    public String getNumber() {
-        return number.get();
+    public SimpleStringProperty ammountProperty() {
+        return ammount;
     }
 
-    public SimpleStringProperty numberProperty() {
-        return number;
+    public void setAmmount(String ammount) {
+        this.ammount.set(ammount);
     }
 
-    public void setNumber(int number) {
-        this.number.set(number + "");
-    }
+    public GoodsModel(String t, String na, String a, String nu, String ip, String op, String rip, String rop){
+        this.type=new SimpleStringProperty(t);
+        this.name=new SimpleStringProperty(na);
+        this.ammount=new SimpleStringProperty(a);
+        this.number=new SimpleStringProperty(nu);
+        this.in_price=new SimpleStringProperty(ip);
+        this.out_price=new SimpleStringProperty(op);
 
-    public String getName() {
-        return name.get();
-    }
-
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
+        this.r_inPrice=new SimpleStringProperty(rip);
+        this.r_outPrice=new SimpleStringProperty(rop);
     }
 
     public String getType() {
@@ -105,63 +48,75 @@ public class GoodsModel {
         this.type.set(type);
     }
 
-    public String getCommodityNum() {
-        return commodityNum.get();
+    public String getName() {
+        return name.get();
     }
 
-    public SimpleStringProperty commodityNumProperty() {
-        return commodityNum;
+    public SimpleStringProperty nameProperty() {
+        return name;
     }
 
-    public void setCommodityNum(int commodityNum) {
-        this.commodityNum.set(commodityNum + "");
+    public void setName(String name) {
+        this.name.set(name);
     }
 
-    public String getPurchasePrice() {
-        return purchasePrice.get();
+    public String getNumber() {
+        return number.get();
     }
 
-    public SimpleStringProperty purchasePriceProperty() {
-        return purchasePrice;
+    public SimpleStringProperty numberProperty() {
+        return number;
     }
 
-    public void setPurchasePrice(double purchasePrice) {
-        this.purchasePrice.set(purchasePrice + "");
+    public void setNumber(String number) {
+        this.number.set(number);
     }
 
-    public String getRetailPrice() {
-        return retailPrice.get();
+    public String getIn_price() {
+        return in_price.get();
     }
 
-    public SimpleStringProperty retailPriceProperty() {
-        return retailPrice;
+    public SimpleStringProperty in_priceProperty() {
+        return in_price;
     }
 
-    public void setRetailPrice(double retailPrice) {
-        this.retailPrice.set(retailPrice + "");
+    public void setIn_price(String in_price) {
+        this.in_price.set(in_price);
     }
 
-    public String getRecentPurPrice() {
-        return recentPurPrice.get();
+    public String getOut_price() {
+        return out_price.get();
     }
 
-    public SimpleStringProperty recentPurPriceProperty() {
-        return recentPurPrice;
+    public SimpleStringProperty out_priceProperty() {
+        return out_price;
     }
 
-    public void setRecentPurPrice(double recentPurPrice) {
-        this.recentPurPrice.set(recentPurPrice + "");
+    public void setOut_price(String out_price) {
+        this.out_price.set(out_price);
     }
 
-    public String getRecentRetPrice() {
-        return recentRetPrice.get();
+    public String getR_inPrice() {
+        return r_inPrice.get();
     }
 
-    public SimpleStringProperty recentRetPriceProperty() {
-        return recentRetPrice;
+    public SimpleStringProperty r_inPriceProperty() {
+        return r_inPrice;
     }
 
-    public void setRecentRetPrice(double recentRetPrice) {
-        this.recentRetPrice.set(recentRetPrice + "");
+    public void setR_inPrice(String r_inPrice) {
+        this.r_inPrice.set(r_inPrice);
+    }
+
+    public String getR_outPrice() {
+        return r_outPrice.get();
+    }
+
+    public SimpleStringProperty r_outPriceProperty() {
+        return r_outPrice;
+    }
+
+    public void setR_outPrice(String r_outPrice) {
+        this.r_outPrice.set(r_outPrice);
     }
 }

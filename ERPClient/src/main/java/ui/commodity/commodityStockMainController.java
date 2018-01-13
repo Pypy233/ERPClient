@@ -2,15 +2,36 @@ package ui.commodity;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import objects.ResultMessage;
+import rmi.RemoteHelper;
 import ui.Main;
+import vo.GoodsVO;
 import vo.UserVO;
 
-public class commodityStockMainController {
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class commodityStockMainController implements Initializable {
 
     private Main main;
     private UserVO userVO;
+
+
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        userVO.setLogin(false);
+        main.exit();
+    }
+
     //左侧“商品分类”按钮
     @FXML
     public Button classifyButton;
@@ -35,9 +56,18 @@ public class commodityStockMainController {
     @FXML
     public Button backButton;
 
+    //下面跳转 查看库存
+    @FXML
+    public Button toStockLookButton;
     //下面跳转 “库存 盘点库存.fxml”按钮
     @FXML
     public Button toStockChangeButton;
+    //下面跳转 赠送单
+    @FXML
+    public Button toStockPresentButton;
+    //下面跳转 库存更新
+    @FXML
+    public Button toStockRefreshButton;
 
 
 
@@ -60,11 +90,31 @@ public class commodityStockMainController {
     }
 
 
+
+    //点击按钮跳转盘点库存界面
+    @FXML
+    public void gotoStockLook(ActionEvent e){
+        main.gotoCommodityStockLook(userVO);
+    }
+
     //点击按钮跳转盘点库存界面
     @FXML
     public void gotoStockCheck(ActionEvent e){
         main.gotoCommodityStockCheck(userVO);
     }
+
+    //点击按钮跳转盘点库存界面
+    @FXML
+    public void gotoStockPresent(ActionEvent e){
+        main.gotoCommodityStockPresent(userVO,new ArrayList<GoodsVO>());
+    }
+
+    //点击按钮跳转盘点库存界面
+    @FXML
+    public void gotoStockRefresh(ActionEvent e){
+        main.gotoCommodityStockRefresh(userVO,new ArrayList<GoodsVO>());
+    }
+
 
     //返回上一层
     @FXML
@@ -74,13 +124,20 @@ public class commodityStockMainController {
 
     //登出
     @FXML
-    public void gotoLog(ActionEvent e){
+    public void gotoLog(ActionEvent e) throws RemoteException {
         userVO.setLogin(false);
         main.gotoLog(userVO.getType());
+        RemoteHelper helper=RemoteHelper.getInstance();
+        helper.getLogBlService().addLog(userVO,"登出", ResultMessage.Success);
     }
     public void setMain(Main main,UserVO userVO){
         this.main=main;
         this.userVO=userVO;
-        userNameLB.setText("管理员"+userVO.getName());
+        userNameLB.setText("User "+userVO.getName());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Manager.PromotionController">
+   <children>
+      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="5.0" layoutY="108.0" />
+            <Label layoutX="85.0" layoutY="725.0" text="NJU" />
+            <Label layoutX="78.0" layoutY="750.0" text="软工二" />
+            <Label layoutX="40.0" layoutY="775.0" text="\@怎么都搞得好组" />
+            <Button layoutX="64.0" layoutY="603.0" mnemonicParsing="false" onAction="#gotoManagerMain" text="主界面">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="58.0" layoutY="308.0" mnemonicParsing="false" onAction="#newPromotion" text="新增促销策略">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="60.0" fitWidth="30.0" layoutX="19.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/write.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="58.0" layoutY="400.0" mnemonicParsing="false" onAction="#checkPromotion" text="查看促销策略">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="60.0" fitWidth="30.0" layoutX="19.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/write.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="250.0" layoutY="175.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <Button layoutX="475.0" layoutY="647.0" mnemonicParsing="false" onAction="#confirm" text="确定">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <AnchorPane layoutX="58.0" layoutY="39.0" prefHeight="274.0" prefWidth="449.0" style="-fx-border-color: black;">
+               <children>
+                  <TableView fx:id="tableView1" layoutX="41.0" layoutY="57.0" prefHeight="160.0" prefWidth="355.0">
+                    <columns>
+                      <TableColumn fx:id="tc_goods1" prefWidth="64.0" text="商品1" />
+                      <TableColumn fx:id="tc_goods1ammount" prefWidth="37.0" text="数量" />
+                        <TableColumn fx:id="tc_goods2" prefWidth="57.0" text="商品2" />
+                        <TableColumn fx:id="tc_goods2ammount" prefWidth="39.0" text="数量" />
+                        <TableColumn fx:id="tc_goods3" prefWidth="68.0" text="商品3" />
+                        <TableColumn fx:id="tc_goods3ammount" prefWidth="42.0" text="数量" />
+                        <TableColumn fx:id="tc_discount1" prefWidth="49.0" text="折扣" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="337.0" layoutY="230.0" mnemonicParsing="false" onAction="#add_1" text="增加" />
+                  <Label layoutX="201.0" layoutY="19.0" text="特价包">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="607.0" layoutY="76.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+               <children>
+                  <Label layoutX="90.0" layoutY="22.0" text="时间">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="from" layoutX="24.0" layoutY="63.0" prefHeight="30.0" prefWidth="152.0" />
+                  <Label layoutX="93.0" layoutY="106.0" text="到" />
+                  <DatePicker fx:id="to" layoutX="25.0" layoutY="139.0" prefHeight="30.0" prefWidth="152.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="58.0" layoutY="337.0" prefHeight="298.0" prefWidth="870.0" style="-fx-border-color: black;">
+               <children>
+                  <TableView fx:id="tableView2" layoutX="40.0" layoutY="49.0" prefHeight="200.0" prefWidth="790.0">
+                    <columns>
+                      <TableColumn fx:id="tc_gift1" prefWidth="52.0" text="礼品1" />
+                      <TableColumn fx:id="tc_gift1ammount" prefWidth="36.0" text="数量" />
+                        <TableColumn fx:id="tc_gift2" prefWidth="53.0" text="礼品2" />
+                        <TableColumn fx:id="tc_gift2ammount" prefWidth="46.0" text="数量" />
+                        <TableColumn fx:id="tc_gift3" prefWidth="53.0" text="礼品3" />
+                        <TableColumn fx:id="tc_gift3ammount" prefWidth="45.0" text="数量" />
+                        <TableColumn fx:id="tc_level1" prefWidth="49.0" text="等级1" />
+                        <TableColumn fx:id="tc_level2" prefWidth="49.0" text="等级2" />
+                        <TableColumn fx:id="tc_level3" prefWidth="47.0" text="等级3" />
+                        <TableColumn fx:id="tc_level4" prefWidth="46.0" text="等级4" />
+                        <TableColumn fx:id="tc_level5" prefWidth="47.0" text="等级5" />
+                        <TableColumn fx:id="tc_max" prefWidth="71.0" text="最高消费" />
+                        <TableColumn fx:id="tc_min" prefWidth="81.0" text="最低消费" />
+                        <TableColumn fx:id="tc_substitute" prefWidth="64.0" text="代金券" />
+                        <TableColumn fx:id="tc_discount2" minWidth="8.0" prefWidth="46.0" text="折扣" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="780.0" layoutY="254.0" mnemonicParsing="false" onAction="#add_2" text="增加" />
+                  <Label layoutX="448.0" layoutY="18.0" text="策略">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <Label layoutX="250.0" layoutY="75.0" prefHeight="60.0" prefWidth="280.0" text="制定销售策略">
+         <font>
+            <Font name="System Bold" size="45.0" />
+         </font></Label>
+      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="850.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/manager.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="label_name" layoutX="950.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="管理员鹏哥">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="550.0" layoutY="95.0" prefHeight="40.0" prefWidth="109.0" text="Promotion">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="950.0" layoutY="105.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="80.0" text="登出" />
+   </children>
+</AnchorPane>

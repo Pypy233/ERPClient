@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.list.goodsListController">
+   <children>
+      <TableView fx:id="goodsList" prefHeight="480.0" prefWidth="800.0">
+        <columns>
+          <TableColumn fx:id="chooseTC" prefWidth="44.0" text="勾选" />
+          <TableColumn fx:id="glIDTC" prefWidth="99.0" text="商品编号" />
+            <TableColumn fx:id="glNameTC" prefWidth="107.0" text="名称" />
+            <TableColumn fx:id="glKindTC" prefWidth="88.0" text="类型" />
+            <TableColumn fx:id="glCommodityTC" prefWidth="77.0" text="库存" />
+            <TableColumn fx:id="glStockPriceTC" prefWidth="100.0" text="进价" />
+            <TableColumn fx:id="glRetailPriceTC" prefWidth="79.0" text="零售价" />
+            <TableColumn fx:id="glRecentSPTC" prefWidth="88.0" text="最新进价" />
+            <TableColumn fx:id="glRecentRPTC" prefWidth="107.0" text="最新零售价" />
+        </columns>
+      </TableView>
+      <Button fx:id="addG" layoutX="471.0" layoutY="497.0" mnemonicParsing="false" onAction="#addG" text="添加">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <Label layoutX="41.0" layoutY="502.0" text="商品列表">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

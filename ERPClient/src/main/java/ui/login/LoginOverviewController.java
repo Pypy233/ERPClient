@@ -3,6 +3,8 @@ package ui.login;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import ui.Main;
 
 import javafx.event.ActionEvent;
@@ -11,7 +13,18 @@ import java.util.ResourceBundle;
 
 public class LoginOverviewController implements Initializable{
 
-    public Main main;
+    private Main main;
+
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        main.exit();
+    }
+
+
     //总经理登录按钮 跳转至登录页面
     @FXML
     public Button managerLoginButton;
@@ -25,6 +38,14 @@ public class LoginOverviewController implements Initializable{
     //总经理登录按钮 跳转至登录页面
     @FXML
     public Button saleLoginButton;
+    //管理员界面
+    @FXML
+    public Button adminButton;
+    //
+    @FXML
+    public void adminLog(ActionEvent e){
+        main.adminLogin("admin");
+    }
 
 
     @FXML

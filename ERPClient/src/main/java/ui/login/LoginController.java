@@ -2,10 +2,7 @@ package ui.login;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import objects.ResultMessage;
 import rmi.RemoteHelper;
@@ -23,7 +20,14 @@ public class LoginController implements Initializable {
 private String type;
 private Main main;
 
+    //退出按钮
+    @FXML
+    public Button exitButton ;
 
+    //退出
+    public void exit(ActionEvent e){
+        main.exit();
+    }
     //人员类型label
     @FXML
     public Label userKindLB;
@@ -42,7 +46,7 @@ private Main main;
     public TextField adminNameTF;
     //密码输入框
     @FXML
-    public TextField adminCodeTF;
+    public PasswordField adminCodeTF;
 
 
 
@@ -75,13 +79,13 @@ private Main main;
         RemoteHelper helper = RemoteHelper.getInstance();
         String name = adminNameTF.getText();
         String code = adminCodeTF.getText();
-        if(name==""||code==""){
+        if(name.equals("")||code.equals("")){
             AlertUtil.showWarningAlert("用户登录信息请填写完整");
         }
-        else if (helper.getUserBLService().check(name, code) == ResultMessage.Success)
+        else if (helper.getUserBLService().check(name, code) .equals(ResultMessage.Success) )
         {
             UserVO userVO = helper.getUserBLService().getUserVO(name);
-            if(userVO.getType().equals(type) == false){
+            if(!userVO.getType().equals(type)){
                 AlertUtil.showWarningAlert("该账户权限职能不包括此项，请重新选择人员类别登录此账户");
             }
             else {
@@ -94,21 +98,24 @@ private Main main;
                         }
                         break;
                         case "财务人员": {
-                            main.gotoAccountantMain(userVO);
+                            main.gotoFinacialStaffMain(userVO);
                             userVO.setLogin(true);
                         }
                         break;
                         case "库存管理人员": {
                             main.gotoCommodityMain(userVO);
+                            System.out.println(userVO.getType()+userVO.getName());
                             userVO.setLogin(true);
                         }
                         break;
                         case "进货销售人员": {
                             main.gotoSaleMain(userVO);
                             userVO.setLogin(true);
+
                         }
                         break;
                     }
+                    helper.getLogBlService().addLog(userVO,"登录",ResultMessage.Success);
                 } else {
                     AlertUtil.showWarningAlert("对不起，该账户已被登录");
                 }

@@ -72,6 +72,16 @@ public class GoodsVO implements Serializable{
         this.recentRetPrice = recentRetPrice;
     }
 
+    public GoodsVO(String name, String type, int commodityNum, double purchasePrice, double retailPrice, double recentPurPrice, double recentRetPrice) {
+        this.name = name;
+        this.type = type;
+        this.commodityNum = commodityNum;
+        this.purchasePrice = purchasePrice;
+        this.retailPrice = retailPrice;
+        this.recentPurPrice = recentPurPrice;
+        this.recentRetPrice = recentRetPrice;
+    }
+
     public int getNumber() {
         return number;
     }

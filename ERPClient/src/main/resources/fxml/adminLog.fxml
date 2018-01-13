@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.login.AdminLogController">
+   <children>
+      <AnchorPane layoutX="425.0" layoutY="450.0" prefHeight="300.0" prefWidth="400.0" style="-fx-border-color: black; -fx-border-width: 3;">
+         <children>
+            <Label layoutX="50.0" layoutY="100.0" text="用户名：">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="adminNameTF" layoutX="150.0" layoutY="100.0" />
+            <Label layoutX="50.0" layoutY="40.0" text="账户类型：">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="adminCodeTF" layoutX="150.0" layoutY="160.0" />
+            <Label id="userKindLB" fx:id="userKindLB" layoutX="200.0" layoutY="40.0" text="管理员">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label layoutX="50.0" layoutY="160.0" text="密码：">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="loginButton" layoutX="179.0" layoutY="224.0" mnemonicParsing="false" onAction="#gotoLogin" prefHeight="39.0" prefWidth="66.0" text="登录">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="338.0" fitWidth="255.0" layoutX="500.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/memberPic.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="585.0" layoutY="399.0" text="LOGIN">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="1090.0" layoutY="835.0" mnemonicParsing="false" onAction="#gotoBackOverview" text="返回上一层" />
+      <Button fx:id="exitButton" layoutX="1184.0" mnemonicParsing="false" onAction="#exit" prefHeight="34.0" prefWidth="65.0" text="close" />
+   </children>
+</AnchorPane>

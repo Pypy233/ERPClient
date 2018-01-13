@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.FinacialStaff.ManageAccountMainController">
+   <children>
+      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="5.0" layoutY="108.0" />
+            <Button layoutX="80.0" layoutY="350.0" mnemonicParsing="false" onAction="#gotodeleteAccount" prefHeight="40.0" prefWidth="100.0" text="删除账户">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font></Button>
+            <Button layoutX="80.0" layoutY="250.0" mnemonicParsing="false" onAction="#gotoaddAccount" prefHeight="40.0" prefWidth="100.0" text="增加账户">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/write.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/update.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="85.0" layoutY="725.0" text="NJU" />
+            <Label layoutX="78.0" layoutY="750.0" text="软工二" />
+            <Label layoutX="40.0" layoutY="775.0" text="\@怎么都搞得好组" />
+            <ImageView fitHeight="40.0" fitWidth="75.0" layoutX="20.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/list.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="80.0" layoutY="444.0" mnemonicParsing="false" onAction="#gotocheckAccount" prefHeight="40.0" prefWidth="100.0" text="查询账户">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="250.0" layoutY="175.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <Label layoutX="382.0" layoutY="136.0" prefHeight="60.0" prefWidth="187.0" text="查询账户">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_accountID" layoutX="475.0" layoutY="220.0" text="请输入所要查询的账户...">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="295.0" layoutY="215.0" prefHeight="40.0" prefWidth="114.0" text="账户名">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableView" layoutX="295.0" layoutY="291.0" prefHeight="200.0" prefWidth="409.0">
+              <columns>
+                <TableColumn fx:id="tc_account" prefWidth="221.0" text="账户名" />
+                <TableColumn fx:id="tc_money" prefWidth="136.0" text="金额" />
+                  <TableColumn fx:id="tc_choose" prefWidth="50.0" text="选择" />
+              </columns>
+            </TableView>
+            <Button layoutX="694.0" layoutY="221.0" mnemonicParsing="false" onAction="#check" text="查询">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="644.0" layoutY="513.0" mnemonicParsing="false" onAction="#revise" text="修改">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="561.0" layoutY="513.0" mnemonicParsing="false" onAction="#delete" text="删除">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+      <Label layoutX="250.0" layoutY="75.0" prefHeight="60.0" prefWidth="280.0" text="账户管理">
+         <font>
+            <Font name="System Bold" size="45.0" />
+         </font></Label>
+      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="850.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/accountant.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="label_name" layoutX="950.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="熊以恒">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="458.0" layoutY="90.0" prefHeight="40.0" prefWidth="223.0" text="Account Administration">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="950.0" layoutY="105.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="80.0" text="登出" />
+      <Button layoutX="80.0" layoutY="671.0" mnemonicParsing="false" onAction="#returnToFinacialStaffMain" text="主界面" />
+   </children>
+</AnchorPane>

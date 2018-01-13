@@ -1,14 +1,46 @@
 package ui.commodity;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import objects.ExcelTools;
+import objects.ResultMessage;
+import rmi.RemoteHelper;
 import ui.Main;
+import ui.model.StockCheckModel;
+import ui.util.AlertUtil;
+import vo.CommodityVO;
+import vo.GoodsVO;
 import vo.UserVO;
 
-public class commodityStockCheckController {
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+public class commodityStockCheckController implements Initializable {
     private Main main;
     private UserVO userVO;
+    private CommodityVO commodityVO;
+    RemoteHelper helper=RemoteHelper.getInstance();
+    ArrayList<GoodsVO> goodsVOS;
+
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        userVO.setLogin(false);
+        main.exit();
+    }
+
+
     //左侧“商品分类”按钮
     @FXML
     public Button classifyButton;
@@ -22,58 +54,27 @@ public class commodityStockCheckController {
 
 
 
-    //输入查找库存变动起始年份
-    @FXML
-    public TextArea searchStartYearTA;
-    //输入查找库存变动起始月份
-    @FXML
-    public TextArea searchStartMonthTA;
-    //输入查找库存变动起始日
-    @FXML
-    public TextArea searchStartDayTA;
-    //输入查找库存变动截止年份
-    @FXML
-    public TextArea searchEndYearTA;
-    //输入查找库存变动截止月份
-    @FXML
-    public TextArea searchEndMonthTA;
-    //输入查找库存变动截止日
-    @FXML
-    public TextArea searchEndDayTA;
-
-    //“查询”按钮
-    @FXML
-    public Button periodSearchButton;
-
-
-
 
 
     //库存变动列表
     @FXML
-    public TableView stockChangeTV;
+    public TableView<StockCheckModel> stockTV;
 
-    //库存变动列表 单据编号
+    //库存列表 行号
     @FXML
-    public TableColumn stockReceiptIDTC;
-    //库存变动列表 供应商
+    public TableColumn stockReceiptLineTC;
+    //库存列表 供应商
     @FXML
-    public TableColumn stockSupplierTC;
-    //库存变动列表 仓库
+    public TableColumn stockNameTC;
+    //库存列表 仓库
     @FXML
-    public TableColumn stockWarehouseTC;
-    //库存变动列表 操作员
+    public TableColumn stockKindTC;
+    //库存列表 操作员
     @FXML
-    public TableColumn stockOperatorTC;
-    //库存变动列表 入库商品
+    public TableColumn stockNumTC;
+    //库存列表 入库商品
     @FXML
-    public TableColumn stockGoodsTC;
-    //库存变动列表 总额
-    @FXML
-    public TableColumn stockTotalPriceTC;
-    //库存变动列表 备注
-    @FXML
-    public TableColumn stockRemarkTC;
+    public TableColumn stockAveragePriceTC;
 
 
 
@@ -83,6 +84,9 @@ public class commodityStockCheckController {
     public Label userNameLB;
 
 
+    //导出
+    @FXML
+    public Button export;
 
 
     //右上角“登出”按钮
@@ -92,7 +96,34 @@ public class commodityStockCheckController {
     //右下角“返回上一层”按钮
     @FXML
     public Button backButton;
+    //跳转商品分类界面
 
+
+
+    @FXML
+    public void export(ActionEvent e) throws Exception {
+        //导出
+        Date date=new Date();
+        int n=goodsVOS.size();
+
+        String a[][]=new String[5][n+1];
+        a[0][0]="行号";
+        a[1][0]="商品名称";
+        a[2][0]="商品类型";
+        a[3][0]="商品库存";
+        a[4][0]="库存均价";
+        for(int i=0;i<n;i++){
+            a[0][i+1]=(i+1)+"";
+            a[1][i+1]=goodsVOS.get(i).getName();
+            a[2][i+1]=goodsVOS.get(i).getType();
+            a[3][i+1]=goodsVOS.get(i).getCommodityNum()+"";
+            a[4][i+1]=(goodsVOS.get(i).getRecentPurPrice()+goodsVOS.get(i).getRecentRetPrice())/2+"";
+        }
+        ExcelTools.export("StockDetail"+date.getTime(),a);
+        helper.getLogBlService().addLog(userVO,"导出库存快照 ", ResultMessage.Success);
+        AlertUtil.showInformationAlert("库存快照已导出");
+        main.gotoCommodityStock(userVO);
+    }
 
 
     //跳转商品分类界面
@@ -114,26 +145,42 @@ public class commodityStockCheckController {
     }
 
 
-    //点击按钮查询
-    @FXML
-    public void gotoStockSearch(ActionEvent e){
-
-    }
-
 
 
 
     //登出
     @FXML
-    public void gotoLog(ActionEvent e){
+    public void gotoLog(ActionEvent e) throws RemoteException {
         userVO.setLogin(false);
         main.gotoLog(userVO.getType());
+        helper.getLogBlService().addLog(userVO,"登出", ResultMessage.Success);
     }
 
 
-    public void setMain(Main main,UserVO userVO){
+    public void setMain(Main main, UserVO userVO) throws RemoteException {
         this.main=main;
         this.userVO=userVO;
-        userNameLB.setText("管理员"+userVO.getName());
+        userNameLB.setText("User "+userVO.getName());
+        ObservableList<StockCheckModel> data =
+                FXCollections.observableArrayList(
+
+                );
+       goodsVOS=helper.getGoodsBLService().getCurrentGoods();
+        for(int i=0;i<goodsVOS.size();i++)
+            data.add(new StockCheckModel(i,goodsVOS.get(i)));
+       //遍历输入
+        stockReceiptLineTC.setCellValueFactory(new PropertyValueFactory<>("line"));
+        stockNameTC.setCellValueFactory(new PropertyValueFactory<>("name"));
+        stockKindTC.setCellValueFactory(new PropertyValueFactory<>("kind"));
+        stockNumTC.setCellValueFactory(new PropertyValueFactory<>("commodityNum"));
+        stockReceiptLineTC.setCellValueFactory(new PropertyValueFactory<>("line"));
+        stockAveragePriceTC.setCellValueFactory(new PropertyValueFactory<>("averagePrice"));
+        stockTV.setItems(data);
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

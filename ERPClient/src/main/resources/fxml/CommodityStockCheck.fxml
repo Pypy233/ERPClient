@@ -8,9 +8,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.commodity.commodityStockCheckController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.commodity.commodityStockCheckController">
    <children>
-      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: blue;">
+      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2;">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -60,17 +60,20 @@
             <Image url="@../image/commodity.png" />
          </image>
       </ImageView>
-      <Label fx:id="userNameLB" layoutX="1000.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="管理员鹏哥">
+      <Label fx:id="userNameLB" alignment="CENTER" layoutX="1000.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="鹏哥">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font></Label>
       <Label layoutX="550.0" layoutY="95.0" prefHeight="40.0" prefWidth="250.0" text="Commodity Management">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="logoutButton" layoutX="1010.0" layoutY="110.0" mnemonicParsing="false" onAction="#gotoLog" prefHeight="30.0" prefWidth="80.0" text="登出" />
-      <AnchorPane layoutX="250.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: blue;">
+      <Button fx:id="logoutButton" layoutX="1010.0" layoutY="110.0" mnemonicParsing="false" onAction="#gotoLog" prefHeight="30.0" prefWidth="80.0" text="登出">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <AnchorPane layoutX="250.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: black; -fx-border-width: 2;">
          <children>
             <Label layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="100.0" text="库存系统">
                <font>
@@ -81,75 +84,36 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Button fx:id="backButton" layoutX="835.0" layoutY="660.0" mnemonicParsing="false" onAction="#gotoStock" text="返回上一层" />
-            <AnchorPane layoutX="20.0" layoutY="245.0" prefHeight="400.0" prefWidth="910.0" style="-fx-border-color: blue;">
+            <Button fx:id="backButton" layoutX="837.0" layoutY="652.0" mnemonicParsing="false" onAction="#gotoStock" text="返回上一层">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <AnchorPane layoutX="31.0" layoutY="86.0" prefHeight="552.0" prefWidth="888.0" style="-fx-border-color: black; -fx-border-width: 2;">
                <children>
-                  <Label ellipsisString="" layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="80.0" text="库存变动">
+                  <Label ellipsisString="" layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="80.0" text="库存快照">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Label>
-                  <TableView fx:id="stockChangeTV" layoutX="20.0" layoutY="60.0" prefHeight="300.0" prefWidth="870.0">
+                  <TableView fx:id="stockTV" layoutX="139.0" layoutY="60.0" prefHeight="377.0" prefWidth="579.0">
                     <columns>
-                      <TableColumn fx:id="stockReceiptIDTC" prefWidth="122.0" text="单据编号" />
-                        <TableColumn fx:id="stockSupplierTC" minWidth="0.0" prefWidth="92.0" text="供应商" />
-                        <TableColumn fx:id="stockWarehouseTC" prefWidth="70.0" text="仓库" />
-                        <TableColumn fx:id="stockOperatorTC" prefWidth="74.0" text="操作员" />
-                        <TableColumn fx:id="stockGoodsTC" prefWidth="123.0" text="入库商品" />
-                        <TableColumn fx:id="stockTotalPriceTC" prefWidth="83.0" text="总额" />
-                        <TableColumn fx:id="stockRemarkTC" prefWidth="231.0" text="备注" />
+                      <TableColumn fx:id="stockReceiptLineTC" prefWidth="54.0" sortable="false" text="行号" />
+                        <TableColumn fx:id="stockNameTC" minWidth="0.0" prefWidth="143.0" text="商品名称" />
+                        <TableColumn fx:id="stockKindTC" prefWidth="121.0" text="商品型号" />
+                        <TableColumn fx:id="stockNumTC" prefWidth="124.0" text="库存数量" />
+                        <TableColumn fx:id="stockAveragePriceTC" prefWidth="136.0" text="库存均价" />
                     </columns>
                   </TableView>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="175.0" layoutY="100.0" prefHeight="120.0" prefWidth="540.0" style="-fx-border-color: blue;">
-               <children>
-                  <Button fx:id="periodSearchButton" layoutX="446.0" layoutY="75.0" mnemonicParsing="false" onAction="#gotoStockSearch" text="查询" />
-                  <TextArea fx:id="searchEndDayTA" layoutX="275.0" layoutY="80.0" prefHeight="20.0" prefWidth="45.0" text="2">
+                  <Button fx:id="export" layoutX="397.0" layoutY="479.0" mnemonicParsing="false" onAction="#export" text="导出">
                      <font>
-                        <Font size="11.0" />
-                     </font>
-                  </TextArea>
-                  <TextArea fx:id="searchEndMonthTA" layoutX="195.0" layoutY="80.0" prefHeight="20.0" prefWidth="45.0" text="1">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </TextArea>
-                  <TextArea fx:id="searchEndYearTA" layoutX="115.0" layoutY="80.0" prefHeight="20.0" prefWidth="45.0" text="2017">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </TextArea>
-                  <Label layoutX="40.0" layoutY="80.0" text="起始时段" />
-                  <TextArea fx:id="searchStartMonthTA" layoutX="195.0" layoutY="50.0" prefHeight="20.0" prefWidth="45.0" text="1">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </TextArea>
-                  <TextArea fx:id="searchStartDayTA" layoutX="275.0" layoutY="50.0" prefHeight="20.0" prefWidth="45.0" text="1">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </TextArea>
-                  <TextArea fx:id="searchStartYearTA" layoutX="115.0" layoutY="50.0" prefHeight="20.0" prefWidth="45.0" text="2017">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </TextArea>
-                  <Label layoutX="40.0" layoutY="50.0" text="起始时段" />
-                  <Label layoutX="15.0" layoutY="15.0" text="预设时间查询">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="170.0" layoutY="50.0" text="年" />
-                  <Label layoutX="170.0" layoutY="80.0" text="年" />
-                  <Label layoutX="250.0" layoutY="50.0" text="月" />
-                  <Label layoutX="250.0" layoutY="80.0" text="月" />
-                  <Label layoutX="330.0" layoutY="50.0" text="日" />
-                  <Label layoutX="330.0" layoutY="80.0" text="日" />
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
+      <Button fx:id="exitButton" layoutX="1185.0" mnemonicParsing="false" onAction="#exit" prefHeight="34.0" prefWidth="65.0" text="close">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
    </children>
 </AnchorPane>

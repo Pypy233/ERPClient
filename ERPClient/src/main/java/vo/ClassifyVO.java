@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Created by py on 2017/10/19.
  */
-public class ClassifyVO implements Serializable{
+public class ClassifyVO implements Serializable {
     /**
      * 分类id
      */

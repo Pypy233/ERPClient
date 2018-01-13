@@ -2,15 +2,35 @@ package ui.sale;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import objects.ResultMessage;
+import rmi.RemoteHelper;
 import ui.Main;
+import vo.GoodsVO;
 import vo.UserVO;
 
-public class saleSaleMainController {
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class saleSaleMainController implements Initializable {
 
     private Main main;
     private UserVO userVO;
+
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        userVO.setLogin(false);
+        main.exit();
+    }
+
     //客户管理 按钮
     @FXML
     public Button memberButton;
@@ -23,6 +43,7 @@ public class saleSaleMainController {
     //退货 按钮
     @FXML
     public Button returnButton;
+
 
 
 
@@ -67,7 +88,7 @@ public class saleSaleMainController {
     //新建销售单 跳转界面到新建销售单界面
     @FXML
     public void gotoSaleNew(ActionEvent e){
-        main.gotoSaleSaleReceipt(userVO);
+        main.gotoSaleSaleReceipt(userVO,new ArrayList<GoodsVO>());
     }
 
 
@@ -81,13 +102,20 @@ public class saleSaleMainController {
 
     //登出
     @FXML
-    public void gotoLog(ActionEvent e){
+    public void gotoLog(ActionEvent e) throws RemoteException {
         userVO.setLogin(false);
         main.gotoLog(userVO.getType());
+        RemoteHelper helper=RemoteHelper.getInstance();
+        helper.getLogBlService().addLog(userVO,"登出", ResultMessage.Success);
     }
     public void setMain(Main main,UserVO userVO){
         this.main=main;
         this.userVO=userVO;
-        userNameLB.setText("管理员"+userVO.getName());
+        userNameLB.setText("User "+userVO.getName());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

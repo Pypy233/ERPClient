@@ -1,18 +1,39 @@
 package ui.sale;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import objects.ResultMessage;
+import rmi.RemoteHelper;
 import ui.Main;
+import ui.util.AlertUtil;
+import vo.MemberVO;
 import vo.UserVO;
 
-public class saleMemberEditController {
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ResourceBundle;
+
+public class saleMemberEditController implements Initializable {
 
     private Main main;
     private UserVO userVO;
+    private MemberVO memberVO;
+    RemoteHelper helper=RemoteHelper.getInstance();
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        userVO.setLogin(false);
+        main.exit();
+    }
+
+
     //客户管理 按钮
     @FXML
     public Button memberButton;
@@ -29,62 +50,46 @@ public class saleMemberEditController {
 
     //客户编号 文本框
     @FXML
-    public TextArea memberIDTA;
+    public TextField memberIDTA;
     //客户 姓名 文本框
     @FXML
-    public TextArea memberNameTA;
+    public TextField memberNameTA;
     //客户 电话 文本框
     @FXML
-    public TextArea memberPhoneTA;
+    public TextField memberPhoneTA;
     //客户 地址 文本框
     @FXML
-    public TextArea memberAddressTA;
+    public TextField memberAddressTA;
     //客户 邮编 文本框
     @FXML
-    public TextArea memberPostcodeTA;
+    public TextField memberPostcodeTA;
     //客户 电子邮箱 文本框
     @FXML
-    public TextArea memberEmailTA;
+    public TextField memberEmailTA;
     //客户 应收额度 文本框
     @FXML
-    public TextArea memberReceivableLimitTA;
+    public TextField memberReceivableLimitTA;
     //客户 默认业务员 文本框
     @FXML
-    public TextArea memberDefaultSalesmanTA;
-
-
-    //客户类别 进货商 选择box
+    public TextField memberDefaultSalesmanTA;
+    //客户 应付 文本框
     @FXML
-    public CheckBox supplierCB;
-    //客户类别 销售商 选择box
+    public TextField payTA;
+    //客户 应收 文本框
     @FXML
-    public CheckBox retailerCB;
+    public TextField getTA;
 
 
 
-    //客户等级 5级 选择box
+    //客户类别
     @FXML
-    public CheckBox levelFiveCB;
-    //客户等级 4级 选择box
+    public ChoiceBox<String> kindCB;
+
+
+
+    //客户等级
     @FXML
-    public CheckBox levelFourCB;
-    //客户等级 3级 选择box
-    @FXML
-    public CheckBox levelThreeCB;
-    //客户等级 2级 选择box
-    @FXML
-    public CheckBox levelTwoCB;
-    //客户等级 1级 选择box
-    @FXML
-    public CheckBox levelOneCB;
-
-
-
-
-
-
-
-
+    public ChoiceBox<String> levelCB;
 
 
     //编辑信息 按钮
@@ -144,7 +149,7 @@ public class saleMemberEditController {
     //编辑信息
     @FXML
     public void memberInfoEdit(ActionEvent e){
-        memberIDTA.setEditable(true);
+        memberIDTA.setEditable(false);
         memberNameTA.setEditable(true);
         memberPhoneTA.setEditable(true);
         memberAddressTA.setEditable(true);
@@ -152,62 +157,119 @@ public class saleMemberEditController {
         memberEmailTA.setEditable(true);
         memberReceivableLimitTA.setEditable(true);
         memberDefaultSalesmanTA.setEditable(true);
+        getTA.setEditable(false);
+        payTA.setEditable(false);
+
+        memberDeleteButton.setDisable(true);
+        memberModifyConfirmButton.setDisable(false);
+        memberInfoEditButton.setDisable(true);
+        memberAddButton.setDisable(true);
     }
     //删除客户
     @FXML
-    public void memberDelete(ActionEvent e){
-
+    public void memberDelete(ActionEvent e)throws RemoteException{
         //删除客户
+        helper.getMemberBLService().deleteMember(memberVO);
         //跳转至MemberMain界面
+        helper.getLogBlService().addLog(userVO,"删除客户 "+memberVO.getName(), ResultMessage.Success);
         main.gotoSaleMain(userVO);
     }
     //确认修改
     @FXML
-    public void memberEditConfirm(ActionEvent e){
+    public void memberEditConfirm(ActionEvent e)throws RemoteException{
         String name=memberNameTA.getText();
-        String id=memberIDTA.getText();
         String phone=memberPhoneTA.getText();
         String address=memberAddressTA.getText();
         String postcode=memberPostcodeTA.getText();
         String email=memberEmailTA.getText();
-        String recevableLimit=memberReceivableLimitTA.getText();
+        String receivableLimit=memberReceivableLimitTA.getText();
         String defaultSalesman=memberDefaultSalesmanTA.getText();
-        //保存用户信息
-        //跳转至MemberMain界面
 
+        int level=levelCB.getSelectionModel().getSelectedIndex()+1;
+        System.out.println(level);
+
+        String kind="进货商";
+        if(kindCB.getSelectionModel().getSelectedIndex()==0)
+            kind="进货商";
+        else if(kindCB.getSelectionModel().getSelectedIndex()==1)
+            kind="销售商";
+
+        //保存用户信息
+        memberVO.setName(name);
+        memberVO.setPhoneNumber(phone);
+        memberVO.setAddress(address);
+        memberVO.setMailAddress(email);
+        memberVO.setPostcode(postcode);
+        memberVO.setManagePerson(defaultSalesman);
+        memberVO.setCollectionLimit(Double.valueOf(receivableLimit));
+        memberVO.setLevel(level);
+        memberVO.setMemberClass(kind);
+        helper.getMemberBLService().updateMember(memberVO);
+        //跳转至MemberMain界面
+        helper.getLogBlService().addLog(userVO,"修改客户信息 "+memberVO.getName(), ResultMessage.Success);
+        main.gotoSaleMain(userVO);
     }
     //新增客户
     @FXML
-    public void memberEditNew(ActionEvent e){
+    public void memberEditNew(ActionEvent e)throws RemoteException{
         String name=memberNameTA.getText();
-        String id=memberIDTA.getText();
         String phone=memberPhoneTA.getText();
         String address=memberAddressTA.getText();
         String postcode=memberPostcodeTA.getText();
         String email=memberEmailTA.getText();
-        String recevableLimit=memberReceivableLimitTA.getText();
+        String receivableLimit=memberReceivableLimitTA.getText();
         String defaultSalesman=memberDefaultSalesmanTA.getText();
-        //清空所有信息，数据库新增一组数据，设置文本框可编辑
-        //跳转至MemberMain界面
 
+        int level=levelCB.getSelectionModel().getSelectedIndex()+1;
+        String kind="进货商";
+        if(kindCB.getSelectionModel().getSelectedIndex()==0)
+            kind="进货商";
+        else if(kindCB.getSelectionModel().getSelectedIndex()==1)
+            kind="销售商";
+        //清空所有信息，数据库新增一组数据，设置文本框可编辑
+        memberVO=new MemberVO();
+        memberVO.setName(name);
+        memberVO.setPhoneNumber(phone);
+        memberVO.setAddress(address);
+        memberVO.setMailAddress(email);
+        memberVO.setPostcode(postcode);
+        memberVO.setManagePerson(defaultSalesman);
+        memberVO.setCollectionLimit(Double.valueOf(receivableLimit));
+        memberVO.setLevel(level);
+        memberVO.setMemberClass(kind);
+        memberVO.setCollection(0);
+        memberVO.setPayment(0);
+
+        helper.getMemberBLService().addMember(memberVO);
+        AlertUtil.showInformationAlert("客户已新增");
+        helper.getLogBlService().addLog(userVO,"新增客户 "+memberVO.getName(), ResultMessage.Success);
+        //跳转至MemberMain界面
+        main.gotoSaleMain(userVO);
     }
 
 
 
     //登出
     @FXML
-    public void gotoLog(ActionEvent e){
+    public void gotoLog(ActionEvent e) throws RemoteException {
         userVO.setLogin(false);
         main.gotoLog(userVO.getType());
+        helper.getLogBlService().addLog(userVO,"登出", ResultMessage.Success);
 
     }
-    public void setMain(Main main,UserVO userVO,String order){
+    public void setMain(Main main, UserVO userVO, String order, MemberVO memberVO){
         this.main=main;
         this.userVO=userVO;
-        userNameLB.setText("管理员"+userVO.getName());
+        this.memberVO=memberVO;
+        userNameLB.setText("User "+userVO.getName());
+        getTA.setEditable(false);
+        payTA.setEditable(false);
+        levelCB.setItems(FXCollections.observableArrayList("一级用户","二级用户","三级用户","四级用户","五级用户（VIP）"));
+        kindCB.setItems(FXCollections.observableArrayList("进货商","销售商"));
+
         switch (order){
             case"Add":{
-                memberIDTA.setEditable(true);
+                memberIDTA.setEditable(false);
                 memberNameTA.setEditable(true);
                 memberPhoneTA.setEditable(true);
                 memberAddressTA.setEditable(true);
@@ -215,6 +277,8 @@ public class saleMemberEditController {
                 memberEmailTA.setEditable(true);
                 memberReceivableLimitTA.setEditable(true);
                 memberDefaultSalesmanTA.setEditable(true);
+                getTA.setEditable(false);
+                payTA.setEditable(false);
                 memberIDTA.setText("");
                 memberNameTA.setText("");
                 memberPhoneTA.setText("");
@@ -223,6 +287,8 @@ public class saleMemberEditController {
                 memberEmailTA.setText("");
                 memberReceivableLimitTA.setText("");
                 memberDefaultSalesmanTA.setText("");
+                payTA.setText("0.0");
+                getTA.setText("0.0");
                 memberDeleteButton.setDisable(true);
                 memberModifyConfirmButton.setDisable(true);
                 memberInfoEditButton.setDisable(true);
@@ -237,21 +303,38 @@ public class saleMemberEditController {
                 memberEmailTA.setEditable(false);
                 memberReceivableLimitTA.setEditable(false);
                 memberDefaultSalesmanTA.setEditable(false);
-                //修改 再传一个值membervo.。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
-                memberIDTA.setText("");
-                memberNameTA.setText("");
-                memberPhoneTA.setText("");
-                memberAddressTA.setText("");
-                memberPostcodeTA.setText("");
-                memberEmailTA.setText("");
-                memberReceivableLimitTA.setText("");
-                memberDefaultSalesmanTA.setText("");
+                getTA.setEditable(false);
+                payTA.setEditable(false);
+
+                memberIDTA.setText(""+memberVO.getNumber());
+                memberNameTA.setText(""+memberVO.getName());
+                memberPhoneTA.setText(""+memberVO.getPhoneNumber());
+                memberAddressTA.setText(""+memberVO.getAddress());
+                memberPostcodeTA.setText(""+memberVO.getPostcode());
+                memberEmailTA.setText(""+memberVO.getMailAddress());
+                memberReceivableLimitTA.setText(""+memberVO.getCollectionLimit());
+                memberDefaultSalesmanTA.setText(""+memberVO.getManagePerson());
+                kindCB.setValue(memberVO.getMemberClass());
+                payTA.setText(memberVO.getPayment()+"");
+                getTA.setText(""+memberVO.getCollection());
+                int level=memberVO.getLevel();
+                levelCB.getSelectionModel().select(level-1);
+                if(memberVO.getMemberClass().equals("进货商"))
+                    kindCB.getSelectionModel().select(0);
+                else
+                    kindCB.getSelectionModel().select(1);
 
                 memberDeleteButton.setDisable(false);
-                memberModifyConfirmButton.setDisable(false);
+                memberModifyConfirmButton.setDisable(true);
                 memberInfoEditButton.setDisable(false);
                 memberAddButton.setDisable(true);
             }break;
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+
     }
 }

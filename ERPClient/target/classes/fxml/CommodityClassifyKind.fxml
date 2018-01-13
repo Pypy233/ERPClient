@@ -8,16 +8,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.commodity.commodityClassifyKindController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.commodity.commodityClassifyKindController">
    <children>
-      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: blue;">
+      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2;">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/home.png" />
                </image>
             </ImageView>
-            <VBox layoutX="5.0" layoutY="108.0" />
+            <VBox fx:id="vb" layoutX="5.0" layoutY="108.0" />
             <Label layoutX="80.0" layoutY="800.0" text="by xyf" />
             <Button fx:id="stockButton" layoutX="80.0" layoutY="450.0" mnemonicParsing="false" onAction="#gotoStock" prefHeight="40.0" prefWidth="100.0" text="库存">
                <font>
@@ -51,33 +51,104 @@
             <Label layoutX="40.0" layoutY="775.0" text="\@怎么都搞得好组" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="250.0" layoutY="175.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: blue;">
+      <AnchorPane layoutX="250.0" layoutY="175.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: black; -fx-border-width: 2;">
          <children>
             <Label layoutX="20.0" layoutY="20.0" text="商品分类">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="backButton" layoutX="812.0" layoutY="631.0" mnemonicParsing="false" onAction="#gotoClassify" text="返回上一层" />
-            <AnchorPane layoutX="20.0" layoutY="100.0" prefHeight="500.0" prefWidth="910.0" style="-fx-border-color: blue;">
+            <Button fx:id="backButton" layoutX="835.0" layoutY="643.0" mnemonicParsing="false" onAction="#gotoClassify" text="返回上一层">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <AnchorPane fx:id="setss" layoutX="20.0" layoutY="100.0" prefHeight="527.0" prefWidth="910.0" style="-fx-border-color: black; -fx-border-width: 2;">
                <children>
                   <Label ellipsisString="" layoutX="15.0" layoutY="15.0" prefHeight="20.0" prefWidth="66.0" text="商品类别列表">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TableView fx:id="kindTV" layoutX="70.0" layoutY="60.0" prefHeight="323.0" prefWidth="500.0">
-                    <columns>
-                      <TableColumn fx:id="kindIDTC" prefWidth="135.0" text="类别ID" />
-                      <TableColumn fx:id="kindKindTC" minWidth="0.0" prefWidth="154.0" text="类别名" />
-                        <TableColumn fx:id="kindDescriptionTC" prefWidth="187.0" text="描述" />
-                    </columns>
-                  </TableView>
-                  <Button layoutX="635.0" layoutY="105.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="50.0" text="编辑" />
-                  <Button layoutX="754.0" layoutY="105.0" mnemonicParsing="false" text="删除" />
-                  <Button fx:id="addKindButton" layoutX="611.0" layoutY="428.0" mnemonicParsing="false" onAction="#addNewKind" text="添加分类" />
-                  <TextField fx:id="kindIDTF" layoutX="70.0" layoutY="419.0" prefHeight="30.0" prefWidth="121.0" text="00001" />
-                  <TextField fx:id="kindNameTF" layoutX="230.0" layoutY="418.0" prefHeight="30.0" prefWidth="121.0" text="pg" />
-                  <TextField fx:id="kindDescriptionTF" layoutX="417.0" layoutY="418.0" prefHeight="30.0" prefWidth="121.0" text="鹏哥专用" />
+                  <AnchorPane layoutX="462.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="371.0" style="-fx-border-color: black; -fx-border-width: 2;">
+                     <children>
+                        <Label layoutX="60.0" layoutY="260.0" text="零售价">
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="60.0" layoutY="100.0" text="商品名称">
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="goodsIDTA" editable="false" layoutX="150.0" layoutY="60.0" prefHeight="20.0" prefWidth="95.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font></TextField>
+                        <Label layoutX="60.0" layoutY="180.0" text="商品类别">
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="60.0" layoutY="220.0" text="进价">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="goodsStockPriceTA" editable="false" layoutX="150.0" layoutY="220.0" prefHeight="20.0" prefWidth="95.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="goodsSalePriceTA" editable="false" layoutX="150.0" layoutY="260.0" prefHeight="20.0" prefWidth="95.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="goodsRecentStockPriceTA" editable="false" layoutX="150.0" layoutY="300.0" prefHeight="20.0" prefWidth="95.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="60.0" layoutY="300.0" text="最新进价">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="60.0" layoutY="60.0" text="商品编号">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="goodsNameTA" editable="false" layoutX="150.0" layoutY="100.0" prefHeight="20.0" prefWidth="95.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="60.0" layoutY="140.0" text="库存数量">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="goodsStockTA" editable="false" layoutX="150.0" layoutY="140.0" prefHeight="20.0" prefWidth="95.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label alignment="CENTER" layoutX="20.0" layoutY="15.0" text="详细资料">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="goodsKindTA" editable="false" layoutX="150.0" layoutY="180.0" prefHeight="20.0" prefWidth="95.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="60.0" layoutY="340.0" text="最新零售价">
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="goodsRecentSalePriceTA" editable="false" layoutX="150.0" layoutY="340.0" prefHeight="20.0" prefWidth="95.0">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="98.0" layoutY="40.0" text="类别列表" />
                </children>
             </AnchorPane>
             <Label layoutX="80.0" layoutY="59.0" text="类别操作">
@@ -95,15 +166,22 @@
             <Image url="@../image/commodity.png" />
          </image>
       </ImageView>
-      <Label fx:id="userNameLB" layoutX="1000.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="管理员鹏哥">
+      <Label fx:id="userNameLB" alignment="CENTER" layoutX="1000.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="鹏哥">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font></Label>
       <Label layoutX="550.0" layoutY="95.0" prefHeight="40.0" prefWidth="250.0" text="Commodity Management">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="logoutButton" layoutX="1010.0" layoutY="110.0" mnemonicParsing="false" onAction="#gotoLog" prefHeight="30.0" prefWidth="80.0" text="登出" />
+      <Button fx:id="logoutButton" layoutX="1010.0" layoutY="110.0" mnemonicParsing="false" onAction="#gotoLog" prefHeight="30.0" prefWidth="80.0" text="登出">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Button>
+      <Button fx:id="exitButton" layoutX="1185.0" mnemonicParsing="false" onAction="#exit" prefHeight="34.0" prefWidth="65.0" text="close">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@ public interface StockReturnBLService extends Remote {
      * @return
      * @throws RemoteException
      */
-    public ResultMessage addStockReturn(String provider, String remark, Set<GoodsStockReturnVO> set) throws RemoteException;
+    public ResultMessage addStockReturn(String provider, String remark, Set<GoodsStockReturnVO> set, String operator) throws RemoteException;
 
     /**
      * 删除库存退货单

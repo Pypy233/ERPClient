@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.list.receiptProcessController">
+   <children>
+      <TableView fx:id="receiptList" prefHeight="480.0" prefWidth="800.0">
+        <columns>
+          <TableColumn fx:id="receiptIDTC" prefWidth="226.0" text="单据编号" />
+            <TableColumn fx:id="dateTC" prefWidth="115.0" text="日期" />
+            <TableColumn fx:id="kindTC" prefWidth="103.0" text="类型" />
+            <TableColumn fx:id="processTC" prefWidth="92.0" text="审批状态" />
+            <TableColumn fx:id="clientTC" prefWidth="107.0" text="客户" />
+            <TableColumn fx:id="operatorTC" prefWidth="130.0" text="操作员" />
+        </columns>
+      </TableView>
+      <Label layoutX="41.0" layoutY="502.0" text="单据状态列表">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

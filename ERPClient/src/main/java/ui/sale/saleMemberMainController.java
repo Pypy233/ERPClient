@@ -2,15 +2,34 @@ package ui.sale;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import objects.ResultMessage;
+import rmi.RemoteHelper;
 import ui.Main;
 import vo.UserVO;
 
-public class saleMemberMainController {
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ResourceBundle;
+
+public class saleMemberMainController implements Initializable {
 
     private Main main;
     private UserVO userVO;
+
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        userVO.setLogin(false);
+        main.exit();
+    }
+
+
     //客户管理 按钮
     @FXML
     public Button memberButton;
@@ -29,9 +48,6 @@ public class saleMemberMainController {
     @FXML
     public Button memberIDSearchButton;
     //查询方式2 按钮
-    @FXML
-    public Button memberKindSearchButton;
-    //查询方式3 按钮
     @FXML
     public Button memberInfoSearchButton;
 
@@ -83,11 +99,6 @@ public class saleMemberMainController {
     public void gotoMemberID(ActionEvent e){
         main.gotoSaleMemberIDSearch(userVO);
     }
-    //类别查询 跳转界面
-    @FXML
-    public void gotoMemberKind(ActionEvent e){
-        main.gotoSaleMemberKindSearch(userVO);
-    }
     //模糊查询 跳转界面
     @FXML
     public void gotoMemberInfo(ActionEvent e){
@@ -96,7 +107,7 @@ public class saleMemberMainController {
     //新增客户 跳转界面（增删改查）
     @FXML
     public void memberNew(ActionEvent e){
-        main.gotoSaleMemberInfoEdit(userVO,"Add");
+        main.gotoSaleMemberInfoEdit(userVO,"Add",null);
 
     }
 
@@ -108,14 +119,20 @@ public class saleMemberMainController {
 
     //登出
     @FXML
-    public void gotoLog(ActionEvent e){
+    public void gotoLog(ActionEvent e) throws RemoteException {
         userVO.setLogin(false);
         main.gotoLog(userVO.getType());
+        RemoteHelper helper=RemoteHelper.getInstance();
+        helper.getLogBlService().addLog(userVO,"登出", ResultMessage.Success);
     }
     public void setMain(Main main,UserVO userVO){
         this.main=main;
         this.userVO=userVO;
-        userNameLB.setText("管理员"+userVO.getName());
+        userNameLB.setText("User "+userVO.getName());
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }

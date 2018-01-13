@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.FinacialStaff.SaleInformationController">
+   <children>
+      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="5.0" layoutY="108.0" />
+            <Label layoutX="85.0" layoutY="725.0" text="NJU" />
+            <Label layoutX="78.0" layoutY="750.0" text="软工二" />
+            <Label layoutX="40.0" layoutY="775.0" text="\@怎么都搞得好组" />
+            <Button layoutX="68.0" layoutY="634.0" mnemonicParsing="false" onAction="#gotoFinacialStaffMain" text="主界面" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="250.0" layoutY="186.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <Button layoutX="761.0" layoutY="576.0" mnemonicParsing="false" onAction="#gotoFinacialStaffMain" text="返回">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <AnchorPane layoutX="295.0" layoutY="99.0" prefHeight="125.0" prefWidth="280.0" style="-fx-border-color: black; -fx-border-width: ;">
+               <children>
+                  <Label layoutX="59.0" layoutY="45.0" text="总支出">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_expense" layoutX="226.0" layoutY="51.0" prefHeight="23.0" prefWidth="177.0" text="￥总支出">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="295.0" layoutY="270.0" prefHeight="125.0" prefWidth="405.0" style="-fx-border-color: black; -fx-border-width: ;">
+               <children>
+                  <Label layoutX="55.0" layoutY="46.0" text="折让后总收入">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_afterdiscount" layoutX="224.0" layoutY="51.0" prefHeight="23.0" prefWidth="177.0" text="￥折让后">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="295.0" layoutY="446.0" prefHeight="125.0" prefWidth="405.0" style="-fx-border-color: black; -fx-border-width: ;">
+               <children>
+                  <Label layoutX="49.0" layoutY="46.0" text="利润">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_get" layoutX="228.0" layoutY="50.0" prefHeight="23.0" prefWidth="177.0" text="￥利润">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <Label layoutX="250.0" layoutY="75.0" prefHeight="60.0" prefWidth="280.0" text="查看经营情况">
+         <font>
+            <Font name="System Bold" size="45.0" />
+         </font></Label>
+      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="850.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/accountant.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="label_name" layoutX="950.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="熊以恒">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="552.0" layoutY="90.0" prefHeight="40.0" prefWidth="215.0" text="Sale Information">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="950.0" layoutY="105.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="80.0" text="登出" />
+   </children>
+</AnchorPane>

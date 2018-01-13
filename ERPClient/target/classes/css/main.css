@@ -1,0 +1,61 @@
+.root {
+    -fx-background-image: url("../image/back.png");
+    -fx-border-color: black;
+    -fx-border-width: 2 ;
+}
+
+.button{
+
+    -fx-border-color: black;
+    -fx-border-width: 2 ;
+    /*设置背景颜色渐变*/
+    -fx-background-color: linear-gradient(to right,lightgrey,white);
+
+    /*设置圆角*/
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+.text-area{
+    -fx-border-radius: 25;
+    -fx-border-color: grey;
+    -fx-background-color:lightyellow;
+}
+.text-area .scroll-pane .content {
+    -fx-background-color: linear-gradient(to right,beige,whitesmoke);
+}
+
+.text-field{
+    -fx-border-radius: 25;
+    -fx-background-radius: 25;
+    -fx-border-color: beige;
+    -fx-background-color:linear-gradient(to right,beige,whitesmoke);
+}
+.password-field{
+    -fx-border-radius: 25;
+    -fx-background-radius: 25;
+    -fx-border-color: beige;
+    -fx-background-color:linear-gradient(to right,beige,whitesmoke);
+}
+.choice-box{
+    -fx-border-radius: 25;
+    -fx-background-radius: 25;
+    -fx-border-color: beige;
+
+}
+
+
+.tree-view{
+
+    -fx-background-color: black;
+
+    -fx-background-radius: 25;
+
+    -fx-border-radius: 25;
+}
+.tree-view.scroll-pane.content{
+    -fx-background-color: grey;
+}
+.tree-cell.scroll-pane.content{
+    -fx-background-color: grey;
+}
+

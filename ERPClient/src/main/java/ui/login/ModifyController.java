@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import objects.ResultMessage;
 import rmi.RemoteHelper;
@@ -19,7 +20,14 @@ public class ModifyController implements Initializable{
 
     private Main main;
     private String type;
+    //退出按钮
+    @FXML
+    public Button exitButton ;
 
+    //退出
+    public void exit(ActionEvent e){
+        main.exit();
+    }
     //修改密码按钮
     @FXML
     public Button modifyButton;
@@ -34,10 +42,10 @@ public class ModifyController implements Initializable{
     public TextField adminNameTF;
     //密码输入框
     @FXML
-    public TextField adminOriginCodeTF;
+    public PasswordField adminOriginCodeTF;
     //确认密码输入框
     @FXML
-    public TextField adminNewCodeTF;
+    public PasswordField adminNewCodeTF;
 
 
     //返回上一层按钮
@@ -60,7 +68,7 @@ public class ModifyController implements Initializable{
         String originCode=adminOriginCodeTF.getText();
         String newCode=adminNewCodeTF.getText();
         RemoteHelper helper=RemoteHelper.getInstance();
-        if(name==""||originCode==""||newCode==""){
+        if(name.equals("")||originCode.equals("")||newCode.equals("")){
             AlertUtil.showWarningAlert("");
         }
         else if(helper.getUserBLService().check(name,originCode)!= ResultMessage.Success){
@@ -69,6 +77,7 @@ public class ModifyController implements Initializable{
         else if(helper.getUserBLService().check(name,originCode)== ResultMessage.Success){
             AlertUtil.showInformationAlert("密码修改成功");
             helper.getUserBLService().updatePassword(name,newCode,type);
+            helper.getLogBlService().addLog(helper.getUserBLService().getUserVO(name),"修改密码",ResultMessage.Success);
             main.gotoLog(type);
         }
 

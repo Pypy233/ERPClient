@@ -4,10 +4,11 @@ import objects.ResultMessage;
 import vo.AdminVO;
 import vo.UserVO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface AdminBLService {
+public interface AdminBLService extends Remote {
 
     /**
      * 增加神奇的管理员

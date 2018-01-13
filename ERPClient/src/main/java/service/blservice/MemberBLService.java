@@ -52,5 +52,20 @@ public interface MemberBLService extends Remote {
     public ArrayList<MemberVO> find(String memberClass, int level, String name,
                                     String managePerson) throws RemoteException;
 
+    /**
+     * 根据姓名查看客户信息
+     * @param name
+     * @return
+     * @throws RemoteException
+     */
+    public ArrayList<MemberVO> findMemberByName(String name) throws RemoteException;
+
+    /**
+     * 根据用户分类寻找用户
+     * @param memberClass
+     * @return
+     * @throws RemoteException
+     */
+    public ArrayList<MemberVO> findMemberByClass(String memberClass) throws RemoteException;
 
 }

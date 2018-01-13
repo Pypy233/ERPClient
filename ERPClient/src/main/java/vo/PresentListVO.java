@@ -29,6 +29,12 @@ public class PresentListVO implements Serializable{
      */
     String client;
 
+    /**
+     * 状态
+     */
+    String state;
+
+
     public PresentListVO() {
     }
 
@@ -38,6 +44,15 @@ public class PresentListVO implements Serializable{
         this.set = set;
         this.operator = operator;
         this.client = client;
+    }
+
+    public PresentListVO(int id, String date, Set<PresentVO> set, String operator, String client, String state) {
+        this.id = id;
+        this.date = date;
+        this.set = set;
+        this.operator = operator;
+        this.client = client;
+        this.state = state;
     }
 
     public int getId() {
@@ -78,5 +93,13 @@ public class PresentListVO implements Serializable{
 
     public void setClient(String client) {
         this.client = client;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

@@ -62,9 +62,9 @@ public class StockVO implements Serializable{
     public StockVO() {
     }
 
-    public StockVO(String number, String date, int receiptNumbe,
+    public StockVO(String number, String date, int receiptNumber,
                    String provider, int commodityNumber, String operator,
-                   Set<GoodsStockVO> stockSe, String remark, double totalPrice) {
+                   Set<GoodsStockVO> stockSet, String remark, double totalPrice) {
         this.number = number;
         this.date = date;
         this.receiptNumber = receiptNumber;

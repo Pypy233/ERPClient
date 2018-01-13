@@ -3,15 +3,37 @@ package ui.sale;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import objects.ResultMessage;
+import rmi.RemoteHelper;
 import ui.Main;
+import ui.util.AlertUtil;
+import vo.GoodsVO;
 import vo.UserVO;
 
-public class saleReturnMainController {
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class saleReturnMainController implements Initializable {
     private Main main;
     private UserVO userVO;
+
+
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        userVO.setLogin(false);
+        main.exit();
+    }
+
     //客户管理 按钮
     @FXML
     public Button memberButton;
@@ -73,16 +95,19 @@ public class saleReturnMainController {
     }
 
 
+
     //新建退货单 分类型
     @FXML
     public void gotoReturnNew(ActionEvent e){
 
-        if(returnCB.equals("销售退货")){
-            main.gotoSaleReturnSaleReceipt(userVO);
+        if(returnCB.getValue()==null)
+            AlertUtil.showWarningAlert("请选择单据类型");
+       else if(returnCB.getValue().equals("销售退货")){
+            main.gotoSaleReturnSaleReceipt(userVO,new ArrayList<GoodsVO>());
         }
 
-        else if(returnCB.equals("进货退货")){
-            main.gotoSaleReturnStockReceipt(userVO);
+        else if(returnCB.getValue().equals("进货退货")){
+            main.gotoSaleReturnStockReceipt(userVO,new ArrayList<GoodsVO>());
         }
 
     }
@@ -98,15 +123,22 @@ public class saleReturnMainController {
 
     //登出
     @FXML
-    public void gotoLog(ActionEvent e){
+    public void gotoLog(ActionEvent e) throws RemoteException {
         userVO.setLogin(false);
         main.gotoLog(userVO.getType());
+        RemoteHelper helper=RemoteHelper.getInstance();
+        helper.getLogBlService().addLog(userVO,"登出", ResultMessage.Success);
     }
 
     public void setMain(Main main,UserVO userVO){
         this.main=main;
         this.userVO=userVO;
-        userNameLB.setText("管理员"+userVO.getName());
+        userNameLB.setText("User "+userVO.getName());
         returnCB.setItems(FXCollections.observableArrayList("销售退货","进货退货"));
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

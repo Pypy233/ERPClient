@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1250.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.FinacialStaff.SaleProcessDetail_BYDController">
+   <children>
+      <AnchorPane layoutY="25.0" prefHeight="850.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="5.0" layoutY="108.0" />
+            <Label layoutX="85.0" layoutY="725.0" text="NJU" />
+            <Label layoutX="78.0" layoutY="750.0" text="软工二" />
+            <Label layoutX="40.0" layoutY="775.0" text="\@怎么都搞得好组" />
+            <Button layoutX="74.0" layoutY="674.0" mnemonicParsing="false" onAction="#gotoFinacialStaffMain" text="主界面" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="250.0" layoutY="175.0" prefHeight="700.0" prefWidth="950.0" style="-fx-border-color: black; -fx-border-width: 2;">
+         <children>
+            <Label layoutX="427.0" layoutY="79.0" text="单据信息">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="186.0" layoutY="135.0" text="单据编号">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_number" layoutX="301.0" layoutY="135.0" prefHeight="15.0" prefWidth="193.0" text="JHD-yyyyMMdd-xxxxx">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="186.0" layoutY="179.0" text="日期">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="186.0" layoutY="215.0" text="操作员">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="186.0" layoutY="255.0" text="仓库">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="186.0" layoutY="348.0" text="商品列表">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TableView layoutX="174.0" layoutY="385.0" prefHeight="200.0" prefWidth="568.0" fx:id="tableView">
+              <columns>
+                <TableColumn fx:id="tc_number" prefWidth="149.0" text="商品编号" />
+                <TableColumn fx:id="tc_name" prefWidth="123.0" text="名称" />
+                  <TableColumn fx:id="tc_type" prefWidth="106.0" text="型号" />
+                  <TableColumn fx:id="tc_ammount" prefWidth="74.0" text="数量" />
+                  <TableColumn fx:id="tc_price" prefWidth="105.0" text="进价" />
+              </columns>
+            </TableView>
+            <Button fx:id="b_red" layoutX="478.0" layoutY="601.0" mnemonicParsing="false" onAction="#red" text="红冲">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="b_redAndCopy" layoutX="565.0" layoutY="600.0" mnemonicParsing="false" onAction="#redAndCopy" text="红冲并复制">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button layoutX="851.0" layoutY="616.0" mnemonicParsing="false" onAction="#gotoSaleProcessResult" text="返回">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button layoutX="692.0" layoutY="601.0" mnemonicParsing="false" onAction="#out" text="导出">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="tf_operator" layoutX="301.0" layoutY="212.0" text="显示操作员" />
+            <TextField layoutX="301.0" layoutY="252.0" text="1" />
+            <Label fx:id="label_date" layoutX="302.0" layoutY="179.0" prefHeight="15.0" prefWidth="193.0" text="显示日期">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Line endX="850.0" layoutY="330.0" startX="110.0" />
+         </children></AnchorPane>
+      <Label layoutX="250.0" layoutY="75.0" prefHeight="60.0" prefWidth="280.0" text="查看经营历程">
+         <font>
+            <Font name="System Bold" size="45.0" />
+         </font></Label>
+      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="850.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/accountant.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="label_name" layoutX="950.0" layoutY="60.0" prefHeight="30.0" prefWidth="100.0" text="熊以恒">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="552.0" layoutY="90.0" prefHeight="40.0" prefWidth="215.0" text="Sale Process">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="950.0" layoutY="105.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="80.0" text="登出" />
+   </children>
+</AnchorPane>

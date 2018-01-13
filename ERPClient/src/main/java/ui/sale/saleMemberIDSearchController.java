@@ -1,20 +1,42 @@
 package ui.sale;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import objects.ResultMessage;
 import rmi.RemoteHelper;
 import ui.Main;
+import ui.model.MemberSearchModel;
 import ui.util.AlertUtil;
+import vo.MemberVO;
 import vo.UserVO;
 
+import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ResourceBundle;
 
-public class saleMemberIDSearchController {
+public class saleMemberIDSearchController implements Initializable {
 
     private Main main;
     private UserVO userVO;
+    private MemberVO memberVO;
     //客户管理 按钮
+
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        userVO.setLogin(false);
+        main.exit();
+    }
+
+
     @FXML
     public Button memberButton;
     //进货 按钮
@@ -41,7 +63,7 @@ public class saleMemberIDSearchController {
 
     //客户信息查询列表
     @FXML
-    public TableView memberInfoSearchTV;
+    public TableView<MemberSearchModel> memberIDSearchTV;
 
     //客户信息查询列表 ID栏
     @FXML
@@ -57,7 +79,7 @@ public class saleMemberIDSearchController {
     public TableColumn memberLevelTC;
     //客户信息查询列表 业务员栏
     @FXML
-    public TableColumn memberDefaultSalesmanPriceTC;
+    public TableColumn memberDefaultSalesmanTC;
 
 
 
@@ -66,6 +88,9 @@ public class saleMemberIDSearchController {
     @FXML
     public Label userNameLB;
 
+    //
+    @FXML
+    public Button chooseB;
 
 
 
@@ -108,33 +133,58 @@ public class saleMemberIDSearchController {
     public void memberIDSearch(ActionEvent e)throws RemoteException{
         RemoteHelper helper=RemoteHelper.getInstance();
         String memberID=memberIDSearchTF.getText();
-        if(memberID==""){
+        if(memberID.equals("")){
             AlertUtil.showWarningAlert("查询ID不能为空");
         }
-        else if(1==1){
+        else if(helper.getMemberBLService().findMember(Integer.valueOf(memberID)).equals(null)){
             //不存在的ID
             AlertUtil.showErrorAlert("此ID不存在");
         }
-        else if(1!=1){
+        else if(!helper.getMemberBLService().findMember(Integer.valueOf(memberID)).equals(null)){
             //存在账户
+            memberVO=helper.getMemberBLService().findMember(Integer.valueOf(memberID));
+
             //显示
+            ObservableList<MemberSearchModel> data= FXCollections.observableArrayList(
+                    new MemberSearchModel(memberVO)
+            );
+
+            memberIDTC.setCellValueFactory(new PropertyValueFactory<>("id"));
+            memberNameTC.setCellValueFactory(new PropertyValueFactory<>("name"));
+            memberKindTC.setCellValueFactory(new PropertyValueFactory<>("kind"));
+            memberLevelTC.setCellValueFactory(new PropertyValueFactory<>("level"));
+            memberDefaultSalesmanTC.setCellValueFactory((new PropertyValueFactory<>("operator")));
+            memberIDSearchTV.setItems(data);
         }
+
     }
 
     //tableview实现
 
+    @FXML
+    public void chooseM(ActionEvent e){
+        main.gotoSaleMemberInfoEdit(userVO,"Search",memberVO);
+    }
 
 
 
     //登出
     @FXML
-    public void gotoLog(ActionEvent e){
+    public void gotoLog(ActionEvent e) throws RemoteException {
         userVO.setLogin(false);
         main.gotoLog(userVO.getType());
+        RemoteHelper helper=RemoteHelper.getInstance();
+        helper.getLogBlService().addLog(userVO,"登出", ResultMessage.Success);
     }
     public void setMain(Main main,UserVO userVO){
         this.main=main;
         this.userVO=userVO;
-        userNameLB.setText("管理员"+userVO.getName());
+        userNameLB.setText("User "+userVO.getName());
+        memberIDSearchTV.setEditable(true);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

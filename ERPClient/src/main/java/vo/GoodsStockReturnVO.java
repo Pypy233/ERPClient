@@ -2,7 +2,7 @@ package vo;
 
 import java.io.Serializable;
 
-public class GoodsStockReturnVO implements Serializable {
+public class GoodsStockReturnVO implements Serializable{
     /**
      * id
      */
@@ -27,7 +27,7 @@ public class GoodsStockReturnVO implements Serializable {
     /**
      * 总额
      */
-    double totalPrice = stockReturnNumber * vo.getPurchasePrice();
+    double totalPrice ;
 
     public GoodsStockReturnVO() {
     }

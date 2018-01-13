@@ -1,15 +1,43 @@
 package ui.sale;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import objects.ResultMessage;
+import rmi.RemoteHelper;
 import ui.Main;
+import ui.model.MemberInfoSearchModel;
+import ui.util.AlertUtil;
+import vo.GoodsVO;
+import vo.MemberVO;
 import vo.UserVO;
 
-public class saleMemberInfoSearchController {
+import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class saleMemberInfoSearchController implements Initializable {
 
     private Main main;
     private UserVO userVO;
+    RemoteHelper helper=RemoteHelper.getInstance();
+    ArrayList<MemberVO> memberVOS;
+
+    //退出按钮
+    @FXML
+    public Button exitButton ;
+
+    //退出
+    public void exit(ActionEvent e){
+        userVO.setLogin(false);
+        main.exit();
+    }
+
     //客户管理 按钮
     @FXML
     public Button memberButton;
@@ -24,50 +52,24 @@ public class saleMemberInfoSearchController {
     public Button returnButton;
 
 
-    //客户编号 文本框
-    @FXML
-    public TextArea memberIDTA;
     //客户 姓名 文本框
     @FXML
     public TextArea memberNameTA;
-    //客户 地址 文本框
-    @FXML
-    public TextArea memberAddressTA;
-    //客户 邮编 文本框
-    @FXML
-    public TextArea memberPostcodeTA;
-    //客户 应收额度 文本框
-    @FXML
-    public TextArea memberReceivableLimitTA;
+
     //客户 默认业务员 文本框
     @FXML
     public TextArea memberDefaultSalesmanTA;
 
 
-    //客户类别 进货商 选择box
+    //客户类别
     @FXML
-    public CheckBox supplierCB;
-    //客户类别 销售商 选择box
-    @FXML
-    public CheckBox retailerCB;
+    public ChoiceBox<String> kindCB;
 
 
 
-    //客户等级 5级 选择box
+    //客户等级
     @FXML
-    public CheckBox levelFiveCB;
-    //客户等级 4级 选择box
-    @FXML
-    public CheckBox levelFourCB;
-    //客户等级 3级 选择box
-    @FXML
-    public CheckBox levelThreeCB;
-    //客户等级 2级 选择box
-    @FXML
-    public CheckBox levelTwoCB;
-    //客户等级 1级 选择box
-    @FXML
-    public CheckBox levelOneCB;
+    public ChoiceBox<String> levelCB;
 
 
     //查询 按钮
@@ -95,7 +97,10 @@ public class saleMemberInfoSearchController {
     public TableColumn memberLevelTC;
     //客户信息查询列表 业务员栏
     @FXML
-    public TableColumn memberDefaultSalesmanPriceTC;
+    public TableColumn memberDefaultSalesmanTC;
+    //客户信息查询列表 勾选栏
+    @FXML
+    public TableColumn memberChooseTC;
 
 
 
@@ -142,28 +147,75 @@ public class saleMemberInfoSearchController {
 
     //查询 action
     @FXML
-    public void memberInfoSearch(ActionEvent e){
+    public void memberInfoSearch(ActionEvent e)throws RemoteException{
+        int level=levelCB.getSelectionModel().getSelectedIndex()+1;
+
+        String kind="进货商";
+        if(kindCB.getSelectionModel().getSelectedIndex()==0)
+            kind="进货商";
+        else if(kindCB.getSelectionModel().getSelectedIndex()==1)
+            kind="销售商";
+
         String name=memberNameTA.getText();
-        String id=memberIDTA.getText();
-        String address=memberAddressTA.getText();
-        String postcode=memberPostcodeTA.getText();
-        String recevableLimit=memberReceivableLimitTA.getText();
-        String defaultSalesman=memberDefaultSalesmanTA.getText();
+        String dSalesman=memberDefaultSalesmanTA.getText();
 
+        memberVOS=helper.getMemberBLService().find(kind,level,name,dSalesman);
+        ObservableList<MemberInfoSearchModel> data= FXCollections.observableArrayList(
 
+        );
+        int n=memberVOS.size();
+        for(int i=0;i<n;i++)
+            data.add(new MemberInfoSearchModel(memberVOS.get(i)));
+        memberChooseTC.setCellValueFactory(new PropertyValueFactory<>("box"));
+        memberIDTC.setCellValueFactory(new PropertyValueFactory<>("id"));
+        memberNameTC.setCellValueFactory(new PropertyValueFactory<>("name"));
+        memberKindTC.setCellValueFactory(new PropertyValueFactory<>("kind"));
+        memberLevelTC.setCellValueFactory(new PropertyValueFactory<>("level"));
+        memberDefaultSalesmanTC.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        memberInfoSearchTV.setItems(data);
 
+    }
+    //
+    @FXML
+    public Button chooseG;
+
+    //
+    @FXML
+    public void chooseM(ActionEvent e){
+        ObservableList<MemberInfoSearchModel> list=memberInfoSearchTV.getItems();
+        MemberVO vo=null;
+        for(int i=0;i<list.size();i++) {
+            if (list.get(i).getBox().isSelected() == true) {
+                vo=memberVOS.get(i);
+
+                break;
+            }
+        }
+        if(!vo.equals(null))
+            main.gotoSaleMemberInfoEdit(userVO, "Search", vo);
+        else
+        AlertUtil.showErrorAlert("请选择客户查看信息");
     }
 
 
     //登出
     @FXML
-    public void gotoLog(ActionEvent e){
+    public void gotoLog(ActionEvent e) throws RemoteException {
         userVO.setLogin(false);
         main.gotoLog(userVO.getType());
+        helper.getLogBlService().addLog(userVO,"登出", ResultMessage.Success);
     }
     public void setMain(Main main,UserVO userVO){
         this.main=main;
         this.userVO=userVO;
-        userNameLB.setText("管理员"+userVO.getName());
+        userNameLB.setText("User "+userVO.getName());
+        levelCB.setItems(FXCollections.observableArrayList("一级用户","二级用户","三级用户","四级用户","五级用户（VIP）"));
+        kindCB.setItems(FXCollections.observableArrayList("进货商","销售商"));
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
